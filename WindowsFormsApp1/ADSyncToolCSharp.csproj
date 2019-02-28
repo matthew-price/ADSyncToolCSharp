@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,6 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Playground.cs" />
+    <Compile Include="DirectoryBinder.cs" />
     <Compile Include="DirectoryObjectsListForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -72,6 +75,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="User.cs" />
     <EmbeddedResource Include="DirectoryObjectsListForm.resx">
       <DependentUpon>DirectoryObjectsListForm.cs</DependentUpon>
     </EmbeddedResource>
