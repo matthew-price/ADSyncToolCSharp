@@ -41,10 +41,10 @@
             this.openServerSettingsDialogButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.openServerSettingsDialogButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openServerSettingsDialogButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.openServerSettingsDialogButton.Location = new System.Drawing.Point(114, 176);
-            this.openServerSettingsDialogButton.Margin = new System.Windows.Forms.Padding(10);
+            this.openServerSettingsDialogButton.Location = new System.Drawing.Point(228, 338);
+            this.openServerSettingsDialogButton.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.openServerSettingsDialogButton.Name = "openServerSettingsDialogButton";
-            this.openServerSettingsDialogButton.Size = new System.Drawing.Size(178, 31);
+            this.openServerSettingsDialogButton.Size = new System.Drawing.Size(356, 60);
             this.openServerSettingsDialogButton.TabIndex = 0;
             this.openServerSettingsDialogButton.Text = "Server Settings";
             this.openServerSettingsDialogButton.UseVisualStyleBackColor = true;
@@ -55,10 +55,10 @@
             this.openDirectoryObjectsDialogButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.openDirectoryObjectsDialogButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openDirectoryObjectsDialogButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.openDirectoryObjectsDialogButton.Location = new System.Drawing.Point(114, 221);
-            this.openDirectoryObjectsDialogButton.Margin = new System.Windows.Forms.Padding(10);
+            this.openDirectoryObjectsDialogButton.Location = new System.Drawing.Point(228, 425);
+            this.openDirectoryObjectsDialogButton.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.openDirectoryObjectsDialogButton.Name = "openDirectoryObjectsDialogButton";
-            this.openDirectoryObjectsDialogButton.Size = new System.Drawing.Size(178, 31);
+            this.openDirectoryObjectsDialogButton.Size = new System.Drawing.Size(356, 60);
             this.openDirectoryObjectsDialogButton.TabIndex = 1;
             this.openDirectoryObjectsDialogButton.Text = "Directory Objects";
             this.openDirectoryObjectsDialogButton.UseVisualStyleBackColor = true;
@@ -69,10 +69,10 @@
             this.openSyncDialogButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.openSyncDialogButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.openSyncDialogButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.openSyncDialogButton.Location = new System.Drawing.Point(114, 266);
-            this.openSyncDialogButton.Margin = new System.Windows.Forms.Padding(10);
+            this.openSyncDialogButton.Location = new System.Drawing.Point(228, 512);
+            this.openSyncDialogButton.Margin = new System.Windows.Forms.Padding(20, 19, 20, 19);
             this.openSyncDialogButton.Name = "openSyncDialogButton";
-            this.openSyncDialogButton.Size = new System.Drawing.Size(178, 31);
+            this.openSyncDialogButton.Size = new System.Drawing.Size(356, 60);
             this.openSyncDialogButton.TabIndex = 2;
             this.openSyncDialogButton.Text = "Sync Now";
             this.openSyncDialogButton.UseVisualStyleBackColor = true;
@@ -80,27 +80,30 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(173, 50);
+            this.pictureBox1.Location = new System.Drawing.Point(346, 96);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 123);
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
             // SplashForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(393, 374);
+            this.ClientSize = new System.Drawing.Size(786, 719);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.openSyncDialogButton);
             this.Controls.Add(this.openDirectoryObjectsDialogButton);
             this.Controls.Add(this.openServerSettingsDialogButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SplashForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "AD Sync Tool";
+            this.Load += new System.EventHandler(this.SplashForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
 

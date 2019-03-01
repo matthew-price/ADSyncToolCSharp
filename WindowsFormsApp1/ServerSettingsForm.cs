@@ -7,11 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.DirectoryServices;
+using System.DirectoryServices.ActiveDirectory;
+using Newtonsoft.Json;
+using System.IO;
 
 namespace WindowsFormsApp1
 {
     public partial class ServerSettingsForm : Form
     {
+        public SplashForm myParent { get; set; }
+
         public ServerSettingsForm()
         {
             InitializeComponent();
@@ -45,7 +51,46 @@ namespace WindowsFormsApp1
         private void saveButton_Click(object sender, EventArgs e)
         {
             //TODO implement save functionality
+
+            #region test server functionality
+
+            DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + hostnameTextBox.Text, domainTextBox.Text + "\\" + usernameTextBox.Text, passwordTextBox.Text);
+            DirectorySearcher search = new DirectorySearcher(searchRoot);
+            search.PropertiesToLoad.Add("samaccountname");
+            try
+            {
+                if (search.FindOne() != null)
+                {
+                    MessageBox.Show("Connected succesfully to " + hostnameTextBox.Text, "Connected", MessageBoxButtons.OK);
+                    myParent.setDirectoryConnection(search);
+                }
+                else
+                {
+                    MessageBox.Show("Failed");
+                }
+            } catch(DirectoryServicesCOMException ex)
+            {
+                MessageBox.Show("Error connecting. Please check server settings and username / password. \n Full details follow. \n" + ex);
+            }
+            #endregion
+
+            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameTextBox.Text, passwordTextBox.Text);
+            Console.WriteLine("Hostname text box: " + hostnameTextBox.Text);
+            // settings.writeSettingsFile();
+            string output = JsonConvert.SerializeObject(settings, Formatting.Indented);
+            Console.WriteLine("Output: " + output);
+            StreamWriter sw = new StreamWriter(@"c:\\Testing\\settings.json");
+            sw.Write(output);
+            sw.Close();
+
             Close();
+
+
+        }
+
+        private void ServerSettingsForm_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
