@@ -11,6 +11,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using Newtonsoft.Json;
 using System.IO;
+using System.Security.Cryptography;
 
 namespace WindowsFormsApp1
 {
@@ -83,6 +84,13 @@ namespace WindowsFormsApp1
             sw.Write(output);
             sw.Close();
 
+            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(passwordTextBox.Text);
+            byte[] entropy = new byte[16];
+            new RNGCryptoServiceProvider().GetBytes(entropy);
+            byte[] encryptedData = ProtectedData.Protect(toEncrypt, entropy, DataProtectionScope.LocalMachine);
+            settings.DirectoryServerPassword = encryptedData;
+            Console.WriteLine("encrypted password:" + System.Text.Encoding.ASCII.GetString(settings.DirectoryServerPassword, 0, settings.DirectoryServerPassword.Length));
+            
             Close();
 
 

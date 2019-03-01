@@ -10,25 +10,32 @@ namespace WindowsFormsApp1
 {
     class Settings
     {
-        string directoryServerHostname;
-        string directoryServerType;
-        string directoryServerUsername;
-        string directoryServerPassword;
+        private string directoryServerHostname;
+        private string directoryServerType;
+        private string directoryServerUsername;
+        private byte[] directoryServerPassword;
+        private string decryptedPassword;
         //Boolean ldaps;
 
-        public Settings(string directoryServerHostname, string directoryServerType, string directoryServerUsername, string directoryServerPassword)
+        public Settings(string directoryServerHostname, string directoryServerType, string directoryServerUsername, string decryptedPassword)
         {
             this.DirectoryServerHostname = directoryServerHostname;
             this.DirectoryServerType = directoryServerType;
             this.DirectoryServerUsername = directoryServerUsername;
-            this.DirectoryServerPassword = directoryServerPassword;
+            this.decryptedPassword = decryptedPassword;
             //this.ldaps = ldaps;
+            
         }
 
         public string DirectoryServerHostname { get => directoryServerHostname; set => directoryServerHostname = value; }
         public string DirectoryServerType { get => directoryServerType; set => directoryServerType = value; }
         public string DirectoryServerUsername { get => directoryServerUsername; set => directoryServerUsername = value; }
-        public string DirectoryServerPassword { get => directoryServerPassword; set => directoryServerPassword = value; }
+        public byte[] DirectoryServerPassword { get => directoryServerPassword; set => directoryServerPassword = value; }
+
+        public string getDecryptedPassword()
+        {
+            return decryptedPassword;
+        }
 
         /* public void writeSettingsFile()
          {
