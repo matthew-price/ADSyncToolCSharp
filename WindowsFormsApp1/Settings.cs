@@ -9,7 +9,7 @@ using System.Security.Cryptography;
 
 namespace WindowsFormsApp1
 {
-    class Settings
+    public class Settings
     {
         private string directoryServerDomain;
         private string directoryServerHostname;

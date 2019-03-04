@@ -76,6 +76,7 @@
             this.openSyncDialogButton.TabIndex = 2;
             this.openSyncDialogButton.Text = "Sync Now";
             this.openSyncDialogButton.UseVisualStyleBackColor = true;
+            this.openSyncDialogButton.Click += new System.EventHandler(this.openSyncDialogButton_Click);
             // 
             // pictureBox1
             // 

@@ -66,8 +66,6 @@
             this.adContainersListBox.ForeColor = System.Drawing.SystemColors.Window;
             this.adContainersListBox.FormattingEnabled = true;
             this.adContainersListBox.ItemHeight = 25;
-            this.adContainersListBox.Items.AddRange(new object[] {
-            "Testing"});
             this.adContainersListBox.Location = new System.Drawing.Point(124, 365);
             this.adContainersListBox.Margin = new System.Windows.Forms.Padding(4);
             this.adContainersListBox.Name = "adContainersListBox";

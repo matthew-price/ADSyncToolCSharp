@@ -81,6 +81,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SyncForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SyncForm.Designer.cs">
+      <DependentUpon>SyncForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="User.cs" />
     <EmbeddedResource Include="DirectoryObjectsListForm.resx">
       <DependentUpon>DirectoryObjectsListForm.cs</DependentUpon>
@@ -103,6 +109,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="SyncForm.resx">
+      <DependentUpon>SyncForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

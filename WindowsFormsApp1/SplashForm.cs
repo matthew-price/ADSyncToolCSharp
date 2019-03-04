@@ -83,5 +83,10 @@ namespace WindowsFormsApp1
             openServerSettingsDialogButton.ForeColor = System.Drawing.Color.FromArgb(128, 255, 128);
         }
 
+        private void openSyncDialogButton_Click(object sender, EventArgs e)
+        {
+            SyncForm syncForm = new SyncForm(this, loadedSettings);
+            syncForm.ShowDialog();
+        }
     }
 }
