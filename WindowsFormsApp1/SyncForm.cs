@@ -74,6 +74,7 @@ namespace WindowsFormsApp1
                 userSearch.PropertiesToLoad.Add("mail");
                 userSearch.PropertiesToLoad.Add("samaccountname");
                 userSearch.PropertiesToLoad.Add("name");
+                userSearch.PropertiesToLoad.Add("objectguid");
 
                 userSearch.Filter = "(objectCategory=User)";
 
@@ -81,7 +82,7 @@ namespace WindowsFormsApp1
 
                 foreach(SearchResult user in resultCol)
                 {
-                    Console.WriteLine("USER ADDED: " + user.Properties["Name"][0]);
+                    Console.WriteLine("USER ADDED: " + new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
                 }
             }
 
