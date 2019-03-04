@@ -62,6 +62,7 @@
             this.ouSearchListBox.Location = new System.Drawing.Point(110, 627);
             this.ouSearchListBox.Margin = new System.Windows.Forms.Padding(4);
             this.ouSearchListBox.Name = "ouSearchListBox";
+            this.ouSearchListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ouSearchListBox.Size = new System.Drawing.Size(666, 379);
             this.ouSearchListBox.TabIndex = 1;
             // 
@@ -113,6 +114,7 @@
             // directoryObjectTypeComboBox
             // 
             this.directoryObjectTypeComboBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.directoryObjectTypeComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.directoryObjectTypeComboBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.directoryObjectTypeComboBox.ForeColor = System.Drawing.SystemColors.Window;
             this.directoryObjectTypeComboBox.FormattingEnabled = true;
@@ -124,13 +126,17 @@
             this.directoryObjectTypeComboBox.Name = "directoryObjectTypeComboBox";
             this.directoryObjectTypeComboBox.Size = new System.Drawing.Size(398, 33);
             this.directoryObjectTypeComboBox.TabIndex = 6;
+            this.directoryObjectTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.directoryObjectTypeComboBox_SelectedIndexChanged);
             // 
             // searchButton
             // 
+            this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.searchButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
             this.searchButton.Location = new System.Drawing.Point(374, 529);
             this.searchButton.Margin = new System.Windows.Forms.Padding(6);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(150, 44);
+            this.searchButton.Size = new System.Drawing.Size(150, 52);
             this.searchButton.TabIndex = 7;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -138,7 +144,10 @@
             // 
             // addButton
             // 
-            this.addButton.Location = new System.Drawing.Point(586, 1080);
+            this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.addButton.Font = new System.Drawing.Font("Arial", 12F);
+            this.addButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
+            this.addButton.Location = new System.Drawing.Point(607, 1080);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(169, 49);
             this.addButton.TabIndex = 8;

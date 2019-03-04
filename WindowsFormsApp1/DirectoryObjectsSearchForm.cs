@@ -39,12 +39,23 @@ namespace WindowsFormsApp1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            Console.WriteLine("DirectorySearcher object: " + search.ToString());
             search.PropertiesToLoad.Clear();
             search.PropertiesToLoad.Add("adspath");
             search.PropertiesToLoad.Add("dN");
-            search.Filter = "(&(objectClass=Group)(name=" + ouSearchQueryBox.Text + "*))";
-            // SearchResult result;
+
+            string directoryObjectType;
+            string objectSearchType;
+            if (directoryObjectTypeComboBox.SelectedItem.Equals("Group")){
+                directoryObjectType = "Group";
+                objectSearchType = "name";
+            }
+            else
+            {
+                directoryObjectType = "organizationalUnit";
+                objectSearchType = "name";
+            }
+
+            search.Filter = "(&(objectClass=" + directoryObjectType + ")(" + objectSearchType + "=" + ouSearchQueryBox.Text + "*))";
             SearchResultCollection resultCol = search.FindAll();
             if (resultCol != null)
             {
@@ -59,6 +70,11 @@ namespace WindowsFormsApp1
 
         private void addButton_Click(object sender, EventArgs e)
         {
+        }
+
+        private void directoryObjectTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
