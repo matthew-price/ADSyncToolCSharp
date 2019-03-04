@@ -85,7 +85,7 @@ namespace WindowsFormsApp1
 
         private void openSyncDialogButton_Click(object sender, EventArgs e)
         {
-            SyncForm syncForm = new SyncForm(this, loadedSettings);
+            SyncForm syncForm = new SyncForm(this, loadedSettings, search);
             syncForm.ShowDialog();
         }
     }
