@@ -5,37 +5,58 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace WindowsFormsApp1
 {
     class Settings
     {
+        private string directoryServerDomain;
         private string directoryServerHostname;
         private string directoryServerType;
         private string directoryServerUsername;
-        private byte[] directoryServerPassword;
-        private string decryptedPassword;
+        private string encryptedPassword;
+        private string entropy;
         //Boolean ldaps;
 
-        public Settings(string directoryServerHostname, string directoryServerType, string directoryServerUsername, string decryptedPassword)
+        public Settings(string directoryServerHostname, string directoryServerType, string directoryServerUsername, string directoryServerDomain)
         {
             this.DirectoryServerHostname = directoryServerHostname;
             this.DirectoryServerType = directoryServerType;
             this.DirectoryServerUsername = directoryServerUsername;
-            this.decryptedPassword = decryptedPassword;
+            this.DirectoryServerDomain = directoryServerDomain;
             //this.ldaps = ldaps;
-            
+
         }
 
         public string DirectoryServerHostname { get => directoryServerHostname; set => directoryServerHostname = value; }
         public string DirectoryServerType { get => directoryServerType; set => directoryServerType = value; }
         public string DirectoryServerUsername { get => directoryServerUsername; set => directoryServerUsername = value; }
-        public byte[] DirectoryServerPassword { get => directoryServerPassword; set => directoryServerPassword = value; }
+        public string EncryptedPasssword { get => encryptedPassword; set => encryptedPassword = value; }
+        public string Entropy { get => entropy; set => entropy = value; }
+        public string DirectoryServerDomain { get => directoryServerDomain; set => directoryServerDomain = value; }
 
         public string getDecryptedPassword()
         {
-            return decryptedPassword;
+            if (encryptedPassword != null)
+            {
+                string decryptedPassword = UnicodeEncoding.UTF8.GetString(ProtectedData.Unprotect(Convert.FromBase64String(encryptedPassword), Convert.FromBase64String(Entropy), DataProtectionScope.LocalMachine));
+                Console.WriteLine("DECRYPTED PASSWORD: " + decryptedPassword);
+                return decryptedPassword;
+            }
+            else
+            {
+                return "password";
+            }
         }
+
+        public void setEntropy(string entropy)
+        {
+            this.Entropy = entropy;
+        }
+
+
+
 
         /* public void writeSettingsFile()
          {
@@ -46,5 +67,6 @@ namespace WindowsFormsApp1
              sw.Close();
          }
          */
+
     }
 }

@@ -18,10 +18,14 @@ namespace WindowsFormsApp1
     public partial class ServerSettingsForm : Form
     {
         public SplashForm myParent { get; set; }
+        internal Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
+
+        private Settings loadedSettings;
 
         public ServerSettingsForm()
         {
             InitializeComponent();
+            this.loadedSettings = LoadedSettings;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -69,36 +73,52 @@ namespace WindowsFormsApp1
                 {
                     MessageBox.Show("Failed");
                 }
-            } catch(DirectoryServicesCOMException ex)
+            }
+            catch (DirectoryServicesCOMException ex)
             {
                 MessageBox.Show("Error connecting. Please check server settings and username / password. \n Full details follow. \n" + ex);
             }
             #endregion
 
-            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameTextBox.Text, passwordTextBox.Text);
-            Console.WriteLine("Hostname text box: " + hostnameTextBox.Text);
-            // settings.writeSettingsFile();
+            #region Creating Settings object, and writing to JSON file
+
+            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameTextBox.Text, domainTextBox.Text);
+            encryptPassword(settings);
+
+            // Write JSON file
             string output = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            Console.WriteLine("Output: " + output);
-            StreamWriter sw = new StreamWriter(@"c:\\Testing\\settings.json");
+            StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "settings.json");
             sw.Write(output);
             sw.Close();
 
-            byte[] toEncrypt = UnicodeEncoding.ASCII.GetBytes(passwordTextBox.Text);
+            Close();
+
+            #endregion
+        }
+
+
+        private void encryptPassword(Settings settings)
+        {
+            byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(passwordTextBox.Text);
             byte[] entropy = new byte[16];
             new RNGCryptoServiceProvider().GetBytes(entropy);
             byte[] encryptedData = ProtectedData.Protect(toEncrypt, entropy, DataProtectionScope.LocalMachine);
-            settings.DirectoryServerPassword = encryptedData;
-            Console.WriteLine("encrypted password:" + System.Text.Encoding.ASCII.GetString(settings.DirectoryServerPassword, 0, settings.DirectoryServerPassword.Length));
-            
-            Close();
+        
 
-
+            // converted encryptedData from a byte[] to a string, and write it to settings.EncryptedPassword
+            settings.EncryptedPasssword = Convert.ToBase64String(encryptedData);
+            settings.setEntropy(Convert.ToBase64String(entropy));
+       
         }
 
         private void ServerSettingsForm_Load(object sender, EventArgs e)
         {
-
+            // Load from Settings object
+            Console.WriteLine("*** Ran ServerSettingsForm_Load");
+            hostnameTextBox.Text = loadedSettings.DirectoryServerHostname;
+            passwordTextBox.Text = loadedSettings.getDecryptedPassword();
+            usernameTextBox.Text = loadedSettings.DirectoryServerUsername;
+            domainTextBox.Text = loadedSettings.DirectoryServerDomain;
         }
     }
 }
