@@ -38,6 +38,7 @@
             this.directoryObjectTypeComboBox = new System.Windows.Forms.ComboBox();
             this.searchButton = new System.Windows.Forms.Button();
             this.addButton = new System.Windows.Forms.Button();
+            this.closeButton = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -155,12 +156,24 @@
             this.addButton.UseVisualStyleBackColor = true;
             this.addButton.Click += new System.EventHandler(this.addButton_Click);
             // 
+            // closeButton
+            // 
+            this.closeButton.AutoSize = true;
+            this.closeButton.ForeColor = System.Drawing.Color.Snow;
+            this.closeButton.Location = new System.Drawing.Point(850, 9);
+            this.closeButton.Name = "closeButton";
+            this.closeButton.Size = new System.Drawing.Size(26, 25);
+            this.closeButton.TabIndex = 9;
+            this.closeButton.Text = "X";
+            this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
+            // 
             // DirectoryObjectsSearchForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(888, 1187);
+            this.Controls.Add(this.closeButton);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.searchButton);
             this.Controls.Add(this.directoryObjectTypeComboBox);
@@ -195,5 +208,6 @@
         private System.Windows.Forms.ComboBox directoryObjectTypeComboBox;
         private System.Windows.Forms.Button searchButton;
         private System.Windows.Forms.Button addButton;
+        private System.Windows.Forms.Label closeButton;
     }
 }

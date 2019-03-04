@@ -18,12 +18,14 @@ namespace WindowsFormsApp1
         #region private variables
         private DirectorySearcher search;
         private DirectoryObjectsListForm myParent;
+
+        public DirectoryObjectsListForm MyParent { get => myParent; set => myParent = value; }
         #endregion
 
         public DirectoryObjectsSearchForm(DirectoryObjectsListForm myParent, DirectorySearcher search)
         {
             InitializeComponent();
-            this.myParent = myParent;
+            this.MyParent = myParent;
             this.search = search;
         }
 
@@ -70,11 +72,27 @@ namespace WindowsFormsApp1
 
         private void addButton_Click(object sender, EventArgs e)
         {
+            bool isOU = true;
+            if (directoryObjectTypeComboBox.SelectedItem.Equals("Group"))
+            {
+                isOU = false;
+            }
+            foreach (var item in ouSearchListBox.SelectedItems)
+            {
+                ADContainer aDContainer = new ADContainer(item.ToString(), item.ToString(), isOU);
+                MyParent.MyParent.ListOfAdContainers.Add(aDContainer);
+            }
+            Close();
         }
 
         private void directoryObjectTypeComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
         }
     }
 }

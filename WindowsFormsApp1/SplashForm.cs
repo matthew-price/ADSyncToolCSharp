@@ -18,6 +18,7 @@ namespace WindowsFormsApp1
     {
 
         private Settings loadedSettings = null;
+        private List<ADContainer> listOfAdContainers = new List<ADContainer>();
 
 
         public SplashForm()
@@ -74,6 +75,7 @@ namespace WindowsFormsApp1
         private DirectorySearcher search = null;
 
         internal Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
+        internal List<ADContainer> ListOfAdContainers { get => listOfAdContainers; set => listOfAdContainers = value; }
 
         public void setDirectoryConnection(DirectorySearcher search)
         {

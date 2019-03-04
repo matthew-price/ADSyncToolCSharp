@@ -19,6 +19,8 @@ namespace WindowsFormsApp1
         private DirectorySearcher search;
         private SplashForm myParent;
 
+        public SplashForm MyParent { get => myParent; set => myParent = value; }
+
         #endregion
 
 
@@ -26,12 +28,12 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
             this.search = search;
-            this.myParent = myParent;
+            this.MyParent = myParent;
         }
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-
+            Close();
         }
 
         private void addButton_Click(object sender, EventArgs e)
@@ -42,7 +44,13 @@ namespace WindowsFormsApp1
 
         private void DirectoryObjectsListForm_Load(object sender, EventArgs e)
         {
-
+            if(MyParent.ListOfAdContainers != null)
+            {
+                foreach(var item in MyParent.ListOfAdContainers)
+                {
+                    adContainersListBox.Items.Add(item.Adspath);
+                }
+            }
         }
     }
 }

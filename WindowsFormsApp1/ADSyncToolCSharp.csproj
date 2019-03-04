@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ADContainer.cs" />
     <Compile Include="Playground.cs" />
     <Compile Include="DirectoryBinder.cs" />
     <Compile Include="DirectoryObjectsListForm.cs">
