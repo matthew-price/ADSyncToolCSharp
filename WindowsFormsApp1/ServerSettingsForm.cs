@@ -57,13 +57,24 @@ namespace WindowsFormsApp1
         {
             //TODO implement save functionality
 
+            string usernameToSave;
+            if (usernameTextBox.Text.Contains('\\'))
+            {
+                usernameToSave = usernameTextBox.Text;
+            }
+            else
+            {
+                usernameToSave = domainTextBox.Text + '\\' + usernameTextBox.Text;
+            }
+
             #region test server functionality
 
-            DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + hostnameTextBox.Text, domainTextBox.Text + "\\" + usernameTextBox.Text, passwordTextBox.Text);
+            DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + hostnameTextBox.Text, usernameToSave, passwordTextBox.Text);
             DirectorySearcher search = new DirectorySearcher(searchRoot);
             search.PropertiesToLoad.Add("samaccountname");
             try
             {
+                Console.WriteLine("TRYING USERNAME: " + usernameToSave);
                 if (search.FindOne() != null)
                 {
                     MessageBox.Show("Connected succesfully to " + hostnameTextBox.Text, "Connected", MessageBoxButtons.OK);
@@ -77,12 +88,17 @@ namespace WindowsFormsApp1
             catch (DirectoryServicesCOMException ex)
             {
                 MessageBox.Show("Error connecting. Please check server settings and username / password. \n Full details follow. \n" + ex);
+            } catch (System.Runtime.InteropServices.COMException)
+            {
+                MessageBox.Show("Server does not appear to be running at address: " + hostnameTextBox.Text);
             }
             #endregion
 
             #region Creating Settings object, and writing to JSON file
 
-            Settings settings = new Settings(hostnameTextBox.Text, "AD", domainTextBox.Text + "\\" + usernameTextBox.Text, domainTextBox.Text);
+
+
+            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameToSave, domainTextBox.Text);
             encryptPassword(settings);
 
             // Write JSON file
