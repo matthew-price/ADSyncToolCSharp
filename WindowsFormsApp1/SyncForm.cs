@@ -100,6 +100,7 @@ namespace WindowsFormsApp1
             writeUsers();
             WriteMemberships();
             setParentOUGUIDs();
+            WriteGroups();
             Close();
 
         }
@@ -128,7 +129,7 @@ namespace WindowsFormsApp1
                 csv.AppendLine(newLine);
             }
 
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "users-v2.csv", csv.ToString(), Encoding.UTF8);
+            File.WriteAllText(myParent.SavePath + "\\users-v2.csv", csv.ToString(), Encoding.UTF8);
         }
 
         private void WriteMemberships()
@@ -148,7 +149,22 @@ namespace WindowsFormsApp1
                 }
             }
 
-            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "memberships-v2.csv", csv.ToString(), Encoding.UTF8);
+            File.WriteAllText(myParent.SavePath + "\\memberships-v2.csv", csv.ToString(), Encoding.UTF8);
+
+        }
+
+        private void WriteGroups()
+        {
+            var csv = new StringBuilder();
+            csv.AppendLine("unique_sis_group_id,group_name,unique_sis_user_id,unique_sis_school_id,sis_parent_group_id,apple_classroom");
+
+            foreach(ADContainer group in fullListOfContainers)
+            {
+                string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.Guid, group.Name, "GroupOwner", "TopLevel", group.ParentContainerID, "");
+                csv.AppendLine(newLine);
+            }
+
+            File.WriteAllText(myParent.SavePath + "\\groups-v2.csv", csv.ToString(), Encoding.UTF8);
 
         }
 
@@ -164,7 +180,7 @@ namespace WindowsFormsApp1
                     DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     //Console.WriteLine("PARENT is: " + parentOU.Parent.Guid);
 
-                    group.Guid = parentOU.Parent.Guid.ToString();
+                    group.ParentContainerID = parentOU.Parent.Guid.ToString();
                     Console.WriteLine("PARENT: " + group.Guid);
                 }
             }

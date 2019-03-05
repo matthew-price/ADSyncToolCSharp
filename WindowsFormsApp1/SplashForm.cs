@@ -19,11 +19,14 @@ namespace WindowsFormsApp1
 
         private Settings loadedSettings = null;
         private List<ADContainer> listOfAdContainers = new List<ADContainer>();
-
+        private string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ADSyncTool");
+        
 
         public SplashForm()
         {
             InitializeComponent();
+            Console.WriteLine("PATH: " + savePath);
+            System.IO.Directory.CreateDirectory(savePath);
             loadSettingsJSON();
         }
 
@@ -31,7 +34,7 @@ namespace WindowsFormsApp1
         {
             try
             {
-                using (StreamReader file = File.OpenText(AppDomain.CurrentDomain.BaseDirectory + "settings.json"))
+                using (StreamReader file = File.OpenText(SavePath + "\\settings.json"))
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     LoadedSettings = (Settings)serializer.Deserialize(file, typeof(Settings));
@@ -76,6 +79,7 @@ namespace WindowsFormsApp1
 
         internal Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
         internal List<ADContainer> ListOfAdContainers { get => listOfAdContainers; set => listOfAdContainers = value; }
+        public string SavePath { get => savePath; set => savePath = value; }
 
         public void setDirectoryConnection(DirectorySearcher search)
         {

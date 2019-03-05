@@ -45,7 +45,6 @@
             this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.textBox5 = new System.Windows.Forms.TextBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.panel6 = new System.Windows.Forms.Panel();
             this.baseDNTextBox = new System.Windows.Forms.TextBox();
             this.saveButton = new System.Windows.Forms.Button();
@@ -57,7 +56,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
@@ -238,17 +236,6 @@
             this.textBox5.TabIndex = 10;
             this.textBox5.Text = "LDAPS Disabled";
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(158, 658);
-            this.pictureBox7.Margin = new System.Windows.Forms.Padding(6);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(64, 62);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox7.TabIndex = 9;
-            this.pictureBox7.TabStop = false;
-            // 
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Window;
@@ -269,7 +256,6 @@
             this.baseDNTextBox.Name = "baseDNTextBox";
             this.baseDNTextBox.Size = new System.Drawing.Size(200, 37);
             this.baseDNTextBox.TabIndex = 7;
-            this.baseDNTextBox.Text = "Base DN";
             // 
             // saveButton
             // 
@@ -325,7 +311,6 @@
             this.Controls.Add(this.panel5);
             this.Controls.Add(this.textBox5);
             this.Controls.Add(this.panel3);
-            this.Controls.Add(this.pictureBox7);
             this.Controls.Add(this.domainTextBox);
             this.Controls.Add(this.panel6);
             this.Controls.Add(this.pictureBox5);
@@ -352,7 +337,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -376,7 +360,6 @@
         private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox baseDNTextBox;
         private System.Windows.Forms.Button saveButton;

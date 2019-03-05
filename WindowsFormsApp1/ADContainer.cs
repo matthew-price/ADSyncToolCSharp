@@ -15,7 +15,7 @@ namespace WindowsFormsApp1
         private List<User> listOfMembers = new List<User>();
         private string guid;
         private List<ADContainer> listOfChildContainers = new List<ADContainer>();
-        private ADContainer parentContainer;
+        private string parentContainerID;
 
         public string Name { get => name; set => name = value; }
         public string Adspath { get => adspath; set => adspath = value; }
@@ -23,7 +23,7 @@ namespace WindowsFormsApp1
         internal List<User> ListOfMembers { get => listOfMembers; set => listOfMembers = value; }
         public string Guid { get => guid; set => guid = value; }
         internal List<ADContainer> ListOfChildContainers { get => listOfChildContainers; set => listOfChildContainers = value; }
-        internal ADContainer ParentContainer { get => parentContainer; set => parentContainer = value; }
+        internal string ParentContainerID { get => parentContainerID; set => parentContainerID = value; }
 
         public ADContainer(string name, string adspath, bool isOU, string guid)
         {

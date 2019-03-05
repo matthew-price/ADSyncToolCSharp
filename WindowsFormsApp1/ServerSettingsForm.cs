@@ -82,12 +82,12 @@ namespace WindowsFormsApp1
 
             #region Creating Settings object, and writing to JSON file
 
-            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameTextBox.Text, domainTextBox.Text);
+            Settings settings = new Settings(hostnameTextBox.Text, "AD", domainTextBox.Text + "\\" + usernameTextBox.Text, domainTextBox.Text);
             encryptPassword(settings);
 
             // Write JSON file
             string output = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            StreamWriter sw = new StreamWriter(AppDomain.CurrentDomain.BaseDirectory + "settings.json");
+            StreamWriter sw = new StreamWriter(myParent.SavePath + "\\settings.json");
             sw.Write(output);
             sw.Close();
 
