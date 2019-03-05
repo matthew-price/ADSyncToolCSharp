@@ -12,19 +12,31 @@ namespace WindowsFormsApp1
         private string name;
         private string adspath;
         private bool isOU;
+        private List<User> listOfMembers = new List<User>();
+        private string guid;
 
         public string Name { get => name; set => name = value; }
         public string Adspath { get => adspath; set => adspath = value; }
         public bool IsOU { get => isOU; set => isOU = value; }
+        internal List<User> ListOfMembers { get => listOfMembers; set => listOfMembers = value; }
+        public string Guid { get => guid; set => guid = value; }
 
-
-
-        public ADContainer(string name, string adspath, bool isOU)
+        public ADContainer(string name, string adspath, bool isOU, string guid)
         {
             this.name = name;
             this.adspath = adspath;
             this.isOU = isOU;
+            this.Guid = guid;
         }
 
+        public override string ToString()
+        {
+            return Name;
+        }
+
+
     }
+
+
+
 }

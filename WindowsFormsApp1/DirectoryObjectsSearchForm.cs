@@ -43,7 +43,8 @@ namespace WindowsFormsApp1
         {
             search.PropertiesToLoad.Clear();
             search.PropertiesToLoad.Add("adspath");
-            search.PropertiesToLoad.Add("dN");
+            search.PropertiesToLoad.Add("objectguid");
+            search.PropertiesToLoad.Add("name");
 
             string directoryObjectType;
             string objectSearchType;
@@ -64,7 +65,8 @@ namespace WindowsFormsApp1
                 for (int i = 0; i < resultCol.Count; i++)
                 {
                     Console.WriteLine(resultCol[i].Properties["adspath"][0].ToString());
-                    ouSearchListBox.Items.Add(resultCol[i].Properties["adspath"][0]);
+                    ADContainer adcontainer = new ADContainer(resultCol[i].Properties["name"][0].ToString(), resultCol[i].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[i].Properties["objectguid"][0]).ToString());
+                    ouSearchListBox.Items.Add(adcontainer);
                 }
 
             }
@@ -77,10 +79,9 @@ namespace WindowsFormsApp1
             {
                 isOU = false;
             }
-            foreach (var item in ouSearchListBox.SelectedItems)
+            foreach (ADContainer item in ouSearchListBox.SelectedItems)
             {
-                ADContainer aDContainer = new ADContainer(item.ToString(), item.ToString(), isOU);
-                MyParent.MyParent.ListOfAdContainers.Add(aDContainer);
+                MyParent.MyParent.ListOfAdContainers.Add(item);
             }
             Close();
         }
