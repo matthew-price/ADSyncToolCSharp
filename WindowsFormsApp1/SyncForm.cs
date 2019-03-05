@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.DirectoryServices;
+using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 
 namespace WindowsFormsApp1
@@ -97,6 +98,10 @@ namespace WindowsFormsApp1
             #endregion
 
             writeUsers();
+            WriteMemberships();
+            setParentOUGUIDs();
+            Close();
+
         }
 
 
@@ -138,10 +143,31 @@ namespace WindowsFormsApp1
                     foreach(User user in group.ListOfMembers)
                     {
                         string newLine = string.Format("{0},{1},{2},{3}", group.Guid, user.Guid, "TopLevel", "0");
+                        csv.AppendLine(newLine);
                     }
                 }
             }
 
+            File.WriteAllText(AppDomain.CurrentDomain.BaseDirectory + "memberships-v2.csv", csv.ToString(), Encoding.UTF8);
+
+        }
+
+     
+
+        private void setParentOUGUIDs()
+        {
+            foreach(ADContainer group in fullListOfContainers)
+            {
+                if (group.IsOU)
+                {
+  
+                    DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    //Console.WriteLine("PARENT is: " + parentOU.Parent.Guid);
+
+                    group.Guid = parentOU.Parent.Guid.ToString();
+                    Console.WriteLine("PARENT: " + group.Guid);
+                }
+            }
         }
 
     }
