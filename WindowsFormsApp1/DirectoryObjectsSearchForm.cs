@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 
-namespace WindowsFormsApp1
+namespace Directorii
 {
     public partial class DirectoryObjectsSearchForm : Form
     {

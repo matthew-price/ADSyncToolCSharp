@@ -13,7 +13,7 @@ using Newtonsoft.Json;
 using System.IO;
 using System.Security.Cryptography;
 
-namespace WindowsFormsApp1
+namespace Directorii
 {
     public partial class ServerSettingsForm : Form
     {

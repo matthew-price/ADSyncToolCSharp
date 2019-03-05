@@ -11,7 +11,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 
-namespace WindowsFormsApp1
+namespace Directorii
 {
     public partial class SyncForm : Form
     {

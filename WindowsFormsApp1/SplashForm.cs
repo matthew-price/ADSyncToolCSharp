@@ -12,7 +12,7 @@ using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using Newtonsoft.Json;
 
-namespace WindowsFormsApp1
+namespace Directorii
 {
     public partial class SplashForm : Form
     {

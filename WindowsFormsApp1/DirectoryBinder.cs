@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 
-namespace WindowsFormsApp1
+namespace Directorii
 {
     class DirectoryBinder
     {
