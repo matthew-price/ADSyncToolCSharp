@@ -92,5 +92,15 @@ namespace Directorii
             SyncForm syncForm = new SyncForm(this, loadedSettings, search);
             syncForm.ShowDialog();
         }
+
+        private void quitApplicationButton_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void openAdvancedDialogButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

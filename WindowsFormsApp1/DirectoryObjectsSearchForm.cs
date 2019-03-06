@@ -95,5 +95,10 @@ namespace Directorii
         {
             Close();
         }
+
+        private void quitAppButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

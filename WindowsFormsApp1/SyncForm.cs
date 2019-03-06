@@ -32,9 +32,15 @@ namespace Directorii
             this.settings = settings;
         }
 
+       
+
         private void SyncForm_Load(object sender, EventArgs e)
         {
-            
+
+        }
+
+        private void runSync()
+        {
             #region Generate full list of OUs (including Child OUs) and Groups
 
             for (int i = 0; i < myParent.ListOfAdContainers.Count; i++)
@@ -87,25 +93,37 @@ namespace Directorii
 
                 SearchResultCollection resultCol = userSearch.FindAll();
 
-                foreach(SearchResult user in resultCol)
+                foreach (SearchResult user in resultCol)
                 {
                     Console.WriteLine("USER ADDED: " + new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
-                    User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), user.Properties["mail"][0].ToString(), new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                    string mailAddress;
+                    if (user.Properties["mail"].Count == 0)
+                    {
+                        mailAddress = user.Properties["samaccountname"][0].ToString() + settings.DirectoryServerHostname + ".com";
+                    }
+                    else
+                    {
+                        mailAddress = user.Properties["mail"][0].ToString();
+                    }
+                    User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+
                     group.ListOfMembers.Add(newUser);
                     fullLisfOfUsers.Add(newUser);
+                    System.Threading.Thread.Sleep(100);
                 }
             }
             #endregion
 
             writeUsers();
+            preparingMembershipsLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             WriteMemberships();
+            preparingHeirarchyLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             setParentOUGUIDs();
+            preparingGroupsLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
             WriteGroups();
-            Close();
+            doneLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
 
         }
-
-
 
         private void writeUsers()
         {
@@ -186,5 +204,25 @@ namespace Directorii
             }
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void closeButton_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void SyncForm_Shown(object sender, EventArgs e)
+        {
+            Application.DoEvents();
+            runSync();
+        }
     }
 }
