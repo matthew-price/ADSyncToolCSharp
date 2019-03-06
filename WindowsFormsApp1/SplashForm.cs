@@ -70,6 +70,33 @@ namespace Directorii
             directoryForm.ShowDialog();
         }
 
+        private void serializeSettingsToJSON()
+        {
+            if (LoadedSettings != null)
+            {
+                try
+                {
+                    Console.WriteLine("ATTEMPTING WRITE");
+                    Console.WriteLine("HOSTNAME IS: " + LoadedSettings.DirectoryServerHostname);
+                    string output = JsonConvert.SerializeObject(LoadedSettings, Formatting.Indented);
+                    StreamWriter sw = new StreamWriter(savePath + "\\settings.json");
+                    sw.Write(output);
+                    sw.Close();
+                } catch (IOException)
+                {
+                    MessageBox.Show("Unable to write settings file. Configuration has not been saved.");
+                }
+                catch (UnauthorizedAccessException)
+                {
+                    MessageBox.Show("Permisson denied when writing settings file. Configuration has not been saved.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("SKIPPING WRITE");
+            }
+        }
+
         private void SplashForm_Load(object sender, EventArgs e)
         {
 
@@ -77,9 +104,9 @@ namespace Directorii
 
         private DirectorySearcher search = null;
 
-        internal Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
         internal List<ADContainer> ListOfAdContainers { get => listOfAdContainers; set => listOfAdContainers = value; }
         public string SavePath { get => savePath; set => savePath = value; }
+        public Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
 
         public void setDirectoryConnection(DirectorySearcher search)
         {
@@ -89,12 +116,14 @@ namespace Directorii
 
         private void openSyncDialogButton_Click(object sender, EventArgs e)
         {
-            SyncForm syncForm = new SyncForm(this, loadedSettings, search);
+            SyncForm syncForm = new SyncForm(this, LoadedSettings, search);
             syncForm.ShowDialog();
         }
 
         private void quitApplicationButton_Click(object sender, EventArgs e)
         {
+            serializeSettingsToJSON();
+            Application.DoEvents();
             Application.Exit();
         }
 
@@ -102,5 +131,6 @@ namespace Directorii
         {
 
         }
+
     }
 }

@@ -100,12 +100,7 @@ namespace Directorii
 
             Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameToSave, domainTextBox.Text);
             encryptPassword(settings);
-
-            // Write JSON file
-            string output = JsonConvert.SerializeObject(settings, Formatting.Indented);
-            StreamWriter sw = new StreamWriter(myParent.SavePath + "\\settings.json");
-            sw.Write(output);
-            sw.Close();
+            myParent.LoadedSettings = settings;
 
             Close();
 
