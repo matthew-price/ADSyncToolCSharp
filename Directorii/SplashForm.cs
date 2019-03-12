@@ -20,7 +20,7 @@ namespace Directorii
         private Settings loadedSettings = null;
         private List<ADContainer> listOfAdContainers = new List<ADContainer>();
         private string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ADSyncTool");
-        
+        private DirectorySearcher search = null;
 
         public SplashForm()
         {
@@ -38,6 +38,8 @@ namespace Directorii
                 {
                     JsonSerializer serializer = new JsonSerializer();
                     LoadedSettings = (Settings)serializer.Deserialize(file, typeof(Settings));
+                    DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + LoadedSettings.DirectoryServerHostname, LoadedSettings.DirectoryServerUsername, LoadedSettings.getDecryptedPassword());
+                    search = new DirectorySearcher(searchRoot);
                 }
             } catch (Exception)
             {
@@ -66,7 +68,7 @@ namespace Directorii
 
         private void openDirectoryObjectsDialogButton_Click(object sender, EventArgs e)
         {
-            DirectoryObjectsListForm directoryForm = new DirectoryObjectsListForm(this, search);
+            DirectoryObjectsListForm directoryForm = new DirectoryObjectsListForm(this, Search);
             directoryForm.ShowDialog();
         }
 
@@ -102,21 +104,21 @@ namespace Directorii
 
         }
 
-        private DirectorySearcher search = null;
 
         internal List<ADContainer> ListOfAdContainers { get => listOfAdContainers; set => listOfAdContainers = value; }
         public string SavePath { get => savePath; set => savePath = value; }
         public Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
+        public DirectorySearcher Search { get => search; set => search = value; }
 
         public void setDirectoryConnection(DirectorySearcher search)
         {
-            this.search = search;
+            this.Search = search;
             openServerSettingsDialogButton.ForeColor = System.Drawing.Color.FromArgb(128, 255, 128);
         }
 
         private void openSyncDialogButton_Click(object sender, EventArgs e)
         {
-            SyncForm syncForm = new SyncForm(this, LoadedSettings, search);
+            SyncForm syncForm = new SyncForm(this, LoadedSettings, Search);
             syncForm.ShowDialog();
         }
 

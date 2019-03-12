@@ -52,5 +52,10 @@ namespace Directorii
                 }
             }
         }
+
+        private void adContainersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
