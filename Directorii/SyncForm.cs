@@ -18,6 +18,7 @@ namespace Directorii
 
         #region private variables
         private SplashForm myParent;
+        private Dictionary<string, User> fullListOfUsers = new Dictionary<string, User>();
         private List<User> fullLisfOfUsers = new List<User>();
         private List<ADContainer> fullListOfContainers = new List<ADContainer>();
         private Settings settings;
@@ -107,9 +108,11 @@ namespace Directorii
                     }
                     User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
 
-                    group.ListOfMembers.Add(newUser);
-                    fullLisfOfUsers.Add(newUser);
-                    System.Threading.Thread.Sleep(100);
+
+                    if (fullListOfUsers.ContainsKey(newUser.Guid)){
+                        group.ListOfMembers.Add(newUser);
+                        fullListOfUsers.Add(newUser.Guid, newUser);
+                    }
                 }
             }
             #endregion
@@ -130,9 +133,9 @@ namespace Directorii
             var csv = new StringBuilder();
             csv.AppendLine("unique_sis_user_id,username,first_name,last_name,unique_sis_school_id,grade,email,user_type,password,authentication");
 
-            foreach(User user in fullLisfOfUsers)
+            foreach(User user in fullListOfUsers.Values)
             {
-                var uniqueUserSisId = user.UserName;
+                var uniqueUserSisId = user.Guid;
                 var userName = user.UserName;
                 var firstName = user.FirstName;
                 var lastName = user.LastName;
