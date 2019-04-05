@@ -12,11 +12,24 @@ namespace Directorii
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        static void Main(string[] args)
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new SplashForm());
+            if (args.Length == 0)
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new SplashForm());
+            }
+            else
+            {
+                Console.WriteLine("running in silent mode");
+                Console.WriteLine("There are :" + args.Length + "arguments.");
+                foreach(var arg in args)
+                {
+                    Console.WriteLine(arg.ToString());
+                }
+                Console.ReadLine();
+            }
         }
     }
 }

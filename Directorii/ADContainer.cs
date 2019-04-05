@@ -12,6 +12,7 @@ namespace Directorii
         private string name;
         private string adspath;
         private bool isOU;
+        private bool overrideParentID = false;
         private List<User> listOfMembers = new List<User>();
         private string guid;
         private List<ADContainer> listOfChildContainers = new List<ADContainer>();
