@@ -10,6 +10,7 @@ using System.Windows.Forms;
 using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System.IO;
+using System.Text.RegularExpressions;
 
 namespace Directorii
 {
@@ -148,9 +149,9 @@ namespace Directorii
             {
                 var uniqueUserSisId = user.Guid;
                 var userName = user.UserName;
-                var firstName = user.FirstName;
-                var lastName = user.LastName;
-                var uniqueSchoolSisId = "TopLevel";
+                var firstName = Regex.Replace(user.FirstName, @"[^\u0000-\u007F]+", string.Empty);
+                var lastName = Regex.Replace(user.LastName, @"[^\u0000-\u007F]+", string.Empty);
+                var uniqueSchoolSisId = "Hafnarfjordur";
                 var grade = "";
                 var email = user.Mail;
                 var user_type = 1;
