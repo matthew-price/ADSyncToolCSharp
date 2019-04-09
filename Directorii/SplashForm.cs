@@ -45,6 +45,18 @@ namespace Directorii
             {
                 Console.WriteLine("Could not load settings JSON into Settings object. No settings JSON found?");
             }
+
+            try
+            {
+                using (StreamReader file = File.OpenText(SavePath + "\\directoryList.json"))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    ListOfAdContainers = (List<ADContainer>)serializer.Deserialize(file, typeof(List<ADContainer>));
+                }
+            } catch (Exception)
+            {
+                Console.WriteLine("Could not load directory objects list. No directory objects JSON found?");
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -78,12 +90,19 @@ namespace Directorii
             {
                 try
                 {
-                    Console.WriteLine("ATTEMPTING WRITE");
-                    Console.WriteLine("HOSTNAME IS: " + LoadedSettings.DirectoryServerHostname);
+                    LoadedSettings.ListOfADContainers = ListOfAdContainers;
+                    //writing Settings file
                     string output = JsonConvert.SerializeObject(LoadedSettings, Formatting.Indented);
                     StreamWriter sw = new StreamWriter(savePath + "\\settings.json");
                     sw.Write(output);
                     sw.Close();
+
+                    //writing Directory Objects file
+                    string directoryObjectsOutput = JsonConvert.SerializeObject(LoadedSettings.ListOfADContainers, Formatting.Indented);
+                    StreamWriter directoryWriter = new StreamWriter(savePath + "\\directoryList.json");
+                    directoryWriter.Write(directoryObjectsOutput);
+                    directoryWriter.Close();
+
                 } catch (IOException)
                 {
                     MessageBox.Show("Unable to write settings file. Configuration has not been saved.");

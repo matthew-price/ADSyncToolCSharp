@@ -126,8 +126,11 @@ namespace Directorii
                     {
                         Console.WriteLine("New OU: " + resultCol[j].Properties["Name"][0].ToString() + " PATH: " + resultCol[j].Properties["adspath"][0].ToString());
                         ADContainer containerToAdd = new ADContainer(resultCol[j].Properties["Name"][0].ToString(), resultCol[j].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[j].Properties["objectguid"][0]).ToString());
-                        fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
-                        Console.WriteLine("*** ADDED OU: " + containerToAdd.Name);
+                        if (!fullListOfContainers.ContainsKey(containerToAdd.Guid))
+                        {
+                            fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
+                            Console.WriteLine("*** ADDED OU: " + containerToAdd.Name);
+                        }
                     }
                 }
                 else

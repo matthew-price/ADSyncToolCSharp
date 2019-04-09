@@ -17,6 +17,8 @@ namespace Directorii
         private string directoryServerUsername;
         private string encryptedPassword;
         private string entropy;
+        private List<ADContainer> listOfADContainers;
+
         //Boolean ldaps;
 
         public Settings(string directoryServerHostname, string directoryServerType, string directoryServerUsername, string directoryServerDomain)
@@ -35,6 +37,7 @@ namespace Directorii
         public string EncryptedPasssword { get => encryptedPassword; set => encryptedPassword = value; }
         public string Entropy { get => entropy; set => entropy = value; }
         public string DirectoryServerDomain { get => directoryServerDomain; set => directoryServerDomain = value; }
+        internal List<ADContainer> ListOfADContainers { get => listOfADContainers; set => listOfADContainers = value; }
 
         public string getDecryptedPassword()
         {
