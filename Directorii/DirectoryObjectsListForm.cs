@@ -31,6 +31,7 @@ namespace Directorii
             this.MyParent = myParent;
         }
 
+        #region event handlers
         private void saveButton_Click(object sender, EventArgs e)
         {
             Close();
@@ -40,22 +41,64 @@ namespace Directorii
         {
             DirectoryObjectsSearchForm searchForm = new DirectoryObjectsSearchForm(this, search);
             searchForm.ShowDialog();
-        }
-
-        private void DirectoryObjectsListForm_Load(object sender, EventArgs e)
-        {
-            if(MyParent.ListOfAdContainers != null)
-            {
-                foreach(var item in MyParent.ListOfAdContainers)
-                {
-                    adContainersListBox.Items.Add(item.Adspath);
-                }
-            }
+            UpdateUI();
         }
 
         private void adContainersListBox_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
+
+        private void removeButton_Click(object sender, EventArgs e)
+        {
+            if (adContainersListBox.SelectedItem != null)
+            {
+                RemoveSelectedContainer(adContainersListBox.SelectedItem.ToString());
+            }
+            else
+            {
+                MessageBox.Show("Please select an item to remove first.", "Nothing selected", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+        }
+
+        #endregion
+
+        private void DirectoryObjectsListForm_Load(object sender, EventArgs e)
+        {
+            UpdateUI();
+        }
+
+        private void UpdateUI()
+        {
+            if (MyParent.ListOfAdContainers != null)
+            {
+                adContainersListBox.Items.Clear();
+                foreach (var item in MyParent.ListOfAdContainers)
+                {
+                    adContainersListBox.Items.Add(item.Adspath);
+                }
+            }
+        }
+
+        private void RemoveSelectedContainer(string adspath)
+        {
+
+                try
+                {
+                    foreach (ADContainer container in MyParent.ListOfAdContainers)
+                    {
+                        if (container.Adspath.Equals(adspath))
+                        {
+                            MyParent.ListOfAdContainers.Remove(container);
+                        }
+                    }
+                } catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+                UpdateUI();
+        }
+
+
     }
 }
