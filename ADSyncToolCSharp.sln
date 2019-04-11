@@ -9,14 +9,19 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Directorii Installer", "Dir
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Beta|Any CPU = Beta|Any CPU
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Beta|Any CPU.ActiveCfg = Beta|Any CPU
+		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Beta|Any CPU.Build.0 = Beta|Any CPU
 		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BB641764-D117-4F94-B886-F519E4B9B3F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Beta|Any CPU.ActiveCfg = Beta
+		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Beta|Any CPU.Build.0 = Beta
 		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Debug|Any CPU.ActiveCfg = Debug
 		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Release|Any CPU.ActiveCfg = Release
 	EndGlobalSection

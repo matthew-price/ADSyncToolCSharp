@@ -82,7 +82,6 @@ namespace Directorii
 
         private void RemoveSelectedContainer(string adspath)
         {
-
                 try
                 {
                     foreach (ADContainer container in MyParent.ListOfAdContainers)
@@ -98,7 +97,5 @@ namespace Directorii
                 }
                 UpdateUI();
         }
-
-
     }
 }

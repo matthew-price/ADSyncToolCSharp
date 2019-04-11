@@ -40,18 +40,21 @@
             this.addButton = new System.Windows.Forms.Button();
             this.closeButton = new System.Windows.Forms.Label();
             this.quitAppButton = new System.Windows.Forms.Label();
+            this.manualSisIDTextBox = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(199, 45);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2);
+            this.pictureBox1.Location = new System.Drawing.Point(398, 87);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 123);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -60,19 +63,21 @@
             this.ouSearchListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ouSearchListBox.ForeColor = System.Drawing.SystemColors.Window;
             this.ouSearchListBox.FormattingEnabled = true;
-            this.ouSearchListBox.Location = new System.Drawing.Point(55, 326);
-            this.ouSearchListBox.Margin = new System.Windows.Forms.Padding(2);
+            this.ouSearchListBox.ItemHeight = 25;
+            this.ouSearchListBox.Location = new System.Drawing.Point(110, 627);
+            this.ouSearchListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.ouSearchListBox.Name = "ouSearchListBox";
             this.ouSearchListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.ouSearchListBox.Size = new System.Drawing.Size(335, 199);
+            this.ouSearchListBox.Size = new System.Drawing.Size(666, 329);
             this.ouSearchListBox.TabIndex = 1;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(81, 158);
+            this.pictureBox2.Location = new System.Drawing.Point(162, 304);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox2.Size = new System.Drawing.Size(64, 62);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox2.TabIndex = 2;
             this.pictureBox2.TabStop = false;
@@ -80,9 +85,10 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(81, 206);
+            this.pictureBox3.Location = new System.Drawing.Point(162, 396);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(32, 32);
+            this.pictureBox3.Size = new System.Drawing.Size(64, 62);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 3;
             this.pictureBox3.TabStop = false;
@@ -93,9 +99,10 @@
             this.ouSearchQueryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ouSearchQueryBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ouSearchQueryBox.ForeColor = System.Drawing.SystemColors.Menu;
-            this.ouSearchQueryBox.Location = new System.Drawing.Point(130, 171);
+            this.ouSearchQueryBox.Location = new System.Drawing.Point(260, 329);
+            this.ouSearchQueryBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.ouSearchQueryBox.Name = "ouSearchQueryBox";
-            this.ouSearchQueryBox.Size = new System.Drawing.Size(194, 19);
+            this.ouSearchQueryBox.Size = new System.Drawing.Size(388, 37);
             this.ouSearchQueryBox.TabIndex = 4;
             this.ouSearchQueryBox.Text = "Search Term";
             this.ouSearchQueryBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
@@ -103,9 +110,10 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Location = new System.Drawing.Point(81, 196);
+            this.panel1.Location = new System.Drawing.Point(162, 377);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(250, 1);
+            this.panel1.Size = new System.Drawing.Size(500, 2);
             this.panel1.TabIndex = 5;
             // 
             // directoryObjectTypeComboBox
@@ -118,9 +126,10 @@
             this.directoryObjectTypeComboBox.Items.AddRange(new object[] {
             "Organizational Unit",
             "Group"});
-            this.directoryObjectTypeComboBox.Location = new System.Drawing.Point(130, 216);
+            this.directoryObjectTypeComboBox.Location = new System.Drawing.Point(260, 415);
+            this.directoryObjectTypeComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.directoryObjectTypeComboBox.Name = "directoryObjectTypeComboBox";
-            this.directoryObjectTypeComboBox.Size = new System.Drawing.Size(201, 21);
+            this.directoryObjectTypeComboBox.Size = new System.Drawing.Size(398, 33);
             this.directoryObjectTypeComboBox.TabIndex = 6;
             this.directoryObjectTypeComboBox.SelectedIndexChanged += new System.EventHandler(this.directoryObjectTypeComboBox_SelectedIndexChanged);
             // 
@@ -129,9 +138,10 @@
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.searchButton.Location = new System.Drawing.Point(187, 275);
+            this.searchButton.Location = new System.Drawing.Point(374, 529);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.searchButton.Name = "searchButton";
-            this.searchButton.Size = new System.Drawing.Size(75, 27);
+            this.searchButton.Size = new System.Drawing.Size(150, 52);
             this.searchButton.TabIndex = 7;
             this.searchButton.Text = "Search";
             this.searchButton.UseVisualStyleBackColor = true;
@@ -142,10 +152,10 @@
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Font = new System.Drawing.Font("Arial", 12F);
             this.addButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.addButton.Location = new System.Drawing.Point(304, 562);
-            this.addButton.Margin = new System.Windows.Forms.Padding(2);
+            this.addButton.Location = new System.Drawing.Point(608, 1081);
+            this.addButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(84, 25);
+            this.addButton.Size = new System.Drawing.Size(168, 48);
             this.addButton.TabIndex = 8;
             this.addButton.Text = "Add";
             this.addButton.UseVisualStyleBackColor = true;
@@ -155,32 +165,59 @@
             // 
             this.closeButton.AutoSize = true;
             this.closeButton.ForeColor = System.Drawing.Color.Snow;
-            this.closeButton.Location = new System.Drawing.Point(425, 5);
-            this.closeButton.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.closeButton.Location = new System.Drawing.Point(850, 10);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(14, 13);
+            this.closeButton.Size = new System.Drawing.Size(0, 25);
             this.closeButton.TabIndex = 9;
-            this.closeButton.Text = "X";
             this.closeButton.Click += new System.EventHandler(this.closeButton_Click);
             // 
             // quitAppButton
             // 
             this.quitAppButton.AutoSize = true;
             this.quitAppButton.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.quitAppButton.Location = new System.Drawing.Point(385, 13);
+            this.quitAppButton.Location = new System.Drawing.Point(770, 25);
+            this.quitAppButton.Margin = new System.Windows.Forms.Padding(6, 0, 6, 0);
             this.quitAppButton.Name = "quitAppButton";
-            this.quitAppButton.Size = new System.Drawing.Size(14, 13);
+            this.quitAppButton.Size = new System.Drawing.Size(26, 25);
             this.quitAppButton.TabIndex = 10;
             this.quitAppButton.Text = "X";
             this.quitAppButton.Click += new System.EventHandler(this.quitAppButton_Click);
             // 
+            // manualSisIDTextBox
+            // 
+            this.manualSisIDTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.manualSisIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.manualSisIDTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.manualSisIDTextBox.ForeColor = System.Drawing.SystemColors.Menu;
+            this.manualSisIDTextBox.Location = new System.Drawing.Point(260, 998);
+            this.manualSisIDTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.manualSisIDTextBox.Name = "manualSisIDTextBox";
+            this.manualSisIDTextBox.Size = new System.Drawing.Size(552, 37);
+            this.manualSisIDTextBox.TabIndex = 11;
+            this.manualSisIDTextBox.Text = "Manual SIS ID? (Default: automatic)";
+            this.manualSisIDTextBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(162, 973);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(64, 62);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox4.TabIndex = 12;
+            this.pictureBox4.TabStop = false;
+            // 
             // DirectoryObjectsSearchForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(444, 640);
+            this.ClientSize = new System.Drawing.Size(888, 1231);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.manualSisIDTextBox);
             this.Controls.Add(this.quitAppButton);
             this.Controls.Add(this.closeButton);
             this.Controls.Add(this.addButton);
@@ -193,7 +230,7 @@
             this.Controls.Add(this.ouSearchListBox);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "DirectoryObjectsSearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
@@ -201,6 +238,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -219,5 +257,7 @@
         private System.Windows.Forms.Button addButton;
         private System.Windows.Forms.Label closeButton;
         private System.Windows.Forms.Label quitAppButton;
+        private System.Windows.Forms.TextBox manualSisIDTextBox;
+        private System.Windows.Forms.PictureBox pictureBox4;
     }
 }

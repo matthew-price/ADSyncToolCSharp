@@ -112,6 +112,15 @@ namespace Directorii
             {
                 if (myParent.ListOfAdContainers[i].IsOU)
                 {
+                    
+                    // adding this container first, to ensure that any custom sisID fields are preserved. if it already exists, remove it
+                    if (fullListOfContainers.ContainsKey(myParent.ListOfAdContainers[i].Guid))
+                    {
+                        fullListOfContainers.Remove(myParent.ListOfAdContainers[i].Guid);
+                    }
+                    fullListOfContainers.Add(myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i]);
+                    
+
                     DirectoryEntry parentOU = new DirectoryEntry(myParent.ListOfAdContainers[i].Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     DirectorySearcher searchForChildOUs = new DirectorySearcher(parentOU);
 
@@ -194,9 +203,10 @@ namespace Directorii
         private void CheckWhetherParentGroupIsBeingImported()
         {
             foreach(ADContainer group in fullListOfContainers.Values){
-                var parentID = group.ParentContainerID;
+                var parentID = group.ParentGuid;
                 if (!fullListOfContainers.ContainsKey(parentID))
                 {
+                    Console.WriteLine("REMOVING PARENT ID FOR: " + group.Name);
                     group.ParentContainerID = "";
                 }
             }
@@ -209,8 +219,16 @@ namespace Directorii
 
             foreach(ADContainer group in fullListOfContainers.Values)
             {
-                string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.Guid, group.Name, "GroupOwner", "Hafnarfjordur", group.ParentContainerID, "");
-                csv.AppendLine(newLine);
+                if (!group.UsingManualSisID)
+                {
+                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.Guid, group.Name, "GroupOwner", "Hafnarfjordur", group.ParentContainerID, "");
+                    csv.AppendLine(newLine);
+                }
+                else
+                {
+                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.ManualSisID, group.Name, "GroupOwner", "Hafnarfjordur", group.ParentContainerID, "");
+                    csv.AppendLine(newLine);
+                }
             }
 
             File.WriteAllText(myParent.SavePath + "\\groups-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
@@ -229,8 +247,20 @@ namespace Directorii
                     DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     //Console.WriteLine("PARENT is: " + parentOU.Parent.Guid);
 
-                    group.ParentContainerID = parentOU.Parent.Guid.ToString();
-                    Console.WriteLine("PARENT: " + group.Guid);
+                    //Check whether the parent group has a manual SIS ID in place, and use that if it exists
+                    if(fullListOfContainers.ContainsKey(parentOU.Parent.Guid.ToString()) && fullListOfContainers[parentOU.Parent.Guid.ToString()].UsingManualSisID)
+                    {
+                        Console.WriteLine("OU NAME TO CHECK: " + fullListOfContainers[parentOU.Guid.ToString()].Name);
+                        Console.WriteLine("CUSTOM ID: " + fullListOfContainers[parentOU.Parent.Guid.ToString()].UsingManualSisID + " Parent: " + fullListOfContainers[parentOU.Parent.Guid.ToString()].ManualSisID);
+                        group.ParentContainerID = fullListOfContainers[parentOU.Parent.Guid.ToString()].ManualSisID;
+                        group.ParentGuid = parentOU.Parent.Guid.ToString();
+                    }
+                    else
+                    {
+                        Console.WriteLine("NOT CUSTOM. CHECKING: " + parentOU.Parent.Name + " USING PARENT ID: " + parentOU.Parent.Guid.ToString());
+                        group.ParentContainerID = parentOU.Parent.Guid.ToString();
+                        group.ParentGuid = parentOU.Parent.Guid.ToString();
+                    }
                 }
             }
         }

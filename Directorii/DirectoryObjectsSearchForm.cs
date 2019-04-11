@@ -81,6 +81,13 @@ namespace Directorii
             }
             foreach (ADContainer item in ouSearchListBox.SelectedItems)
             {
+                if(manualSisIDTextBox.Text != "Manual SIS ID? (Default: automatic)")
+                {
+                    item.ManualSisID = manualSisIDTextBox.Text;
+                    item.UsingManualSisID = true;
+                    Console.WriteLine("MANUAL SIS ID DETECTED");
+                }
+
                 MyParent.MyParent.ListOfAdContainers.Add(item);
             }
             Close();
@@ -99,6 +106,11 @@ namespace Directorii
         private void quitAppButton_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
+        {
+
         }
     }
 }

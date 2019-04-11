@@ -15,31 +15,47 @@
     {
         "Entry"
         {
-        "MsmKey" = "8:_B49BE9529C64480AA0A5B94D0CB6451B"
+        "MsmKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
+        "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
-        "MsmKey" = "8:_B792FC7662F2E0D178ACDFCC76A1B244"
-        "OwnerKey" = "8:_B49BE9529C64480AA0A5B94D0CB6451B"
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B792FC7662F2E0D178ACDFCC76A1B244"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_B49BE9529C64480AA0A5B94D0CB6451B"
+        "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
     "Configurations"
     {
+        "Beta"
+        {
+        "DisplayName" = "8:Beta"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Beta\\Directorii Installer.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+        }
         "Debug"
         {
         "DisplayName" = "8:Debug"
@@ -100,45 +116,14 @@
         }
         "File"
         {
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B49BE9529C64480AA0A5B94D0CB6451B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_B49BE9529C64480AA0A5B94D0CB6451B"
-                    {
-                    "Name" = "8:Directorii.exe"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:..\\Directorii\\bin\\Debug\\Directorii.exe"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_B792FC7662F2E0D178ACDFCC76A1B244"
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3DC4F69022E19BEEDB15F834A1A23AB2"
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
-                    "_B792FC7662F2E0D178ACDFCC76A1B244"
+                    "_3DC4F69022E19BEEDB15F834A1A23AB2"
                     {
                     "Name" = "8:Newtonsoft.Json.DLL"
                     "Attributes" = "3:512"
@@ -160,6 +145,37 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_8BCD4D4719574C2D93B29F94861DE47F"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.0.6.0, Culture=neutral, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_8BCD4D4719574C2D93B29F94861DE47F"
+                    {
+                    "Name" = "8:Directorii.exe"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:..\\Directorii\\bin\\Beta\\Directorii.exe"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
         }
@@ -229,15 +245,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Directorii"
-        "ProductCode" = "8:{4A4095DE-5C1B-47D6-BD72-1D02D650D6DC}"
-        "PackageCode" = "8:{46B115DB-899B-4224-9EAF-D7E5FC08B3A9}"
+        "ProductCode" = "8:{77D2AB6F-573F-4513-8489-B578FE56947B}"
+        "PackageCode" = "8:{882A59BC-669A-466A-9BB8-8AF1A4F941C4}"
         "UpgradeCode" = "8:{5C0AE55D-81A3-4135-9402-3542932B307C}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
-        "RemovePreviousVersions" = "11:FALSE"
+        "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.0.0"
+        "ProductVersion" = "8:1.0.6"
         "Manufacturer" = "8:mattprice.eu"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
@@ -350,7 +366,7 @@
         }
         "Shortcut"
         {
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_28101894DA434D9AAB045AAEF3B81742"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_46E6AE3BC8F34328B980C757D245AB8C"
             {
             "Name" = "8:AD Sync Tool"
             "Arguments" = "8:"
@@ -358,13 +374,13 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_B49BE9529C64480AA0A5B94D0CB6451B"
-            "Folder" = "8:_6554ACB0CCCC4BCD9A0E855050DFF469"
+            "Target" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
+            "Folder" = "8:_9E7AB22AF3A2470CB3E3F7D26B4230C8"
             "WorkingFolder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
             "Icon" = "8:"
             "Feature" = "8:"
             }
-            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_B44BE930295F4D7F9B4C54615043F6E3"
+            "{970C0BB2-C7D0-45D7-ABFA-7EC378858BC0}:_A79744FC143A4EFAB17D4A30D95D81AB"
             {
             "Name" = "8:AD Sync Tool"
             "Arguments" = "8:"
@@ -372,8 +388,8 @@
             "ShowCmd" = "3:1"
             "IconIndex" = "3:0"
             "Transitive" = "11:FALSE"
-            "Target" = "8:_B49BE9529C64480AA0A5B94D0CB6451B"
-            "Folder" = "8:_9E7AB22AF3A2470CB3E3F7D26B4230C8"
+            "Target" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
+            "Folder" = "8:_6554ACB0CCCC4BCD9A0E855050DFF469"
             "WorkingFolder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
             "Icon" = "8:"
             "Feature" = "8:"
@@ -453,8 +469,8 @@
                             "Type" = "3:15"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1258"
+                            "Setting" = "3:2"
+                            "Value" = "8:Please check regularly for updates to this software from the SharePoint URL."
                             "DefaultValue" = "8:#1258"
                             "UsePlugInResources" = "11:TRUE"
                             }
@@ -749,8 +765,8 @@
                             "Type" = "3:3"
                             "ContextData" = "8:"
                             "Attributes" = "3:0"
-                            "Setting" = "3:1"
-                            "Value" = "8:#1202"
+                            "Setting" = "3:2"
+                            "Value" = "8:All rights reserved."
                             "DefaultValue" = "8:#1202"
                             "UsePlugInResources" = "11:TRUE"
                             }

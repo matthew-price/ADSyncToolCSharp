@@ -12,11 +12,14 @@ namespace Directorii
         private string name;
         private string adspath;
         private bool isOU;
-        private bool overrideParentID = false;
+        //private bool overrideParentID = false;
         private List<User> listOfMembers = new List<User>();
         private string guid;
         private List<ADContainer> listOfChildContainers = new List<ADContainer>();
         private string parentContainerID;
+        private string manualSisID;
+        private string parentGuid;
+        private bool usingManualSisID = false;
 
         public string Name { get => name; set => name = value; }
         public string Adspath { get => adspath; set => adspath = value; }
@@ -25,6 +28,9 @@ namespace Directorii
         public string Guid { get => guid; set => guid = value; }
         internal List<ADContainer> ListOfChildContainers { get => listOfChildContainers; set => listOfChildContainers = value; }
         internal string ParentContainerID { get => parentContainerID; set => parentContainerID = value; }
+        public string ManualSisID { get => manualSisID; set => manualSisID = value; }
+        public bool UsingManualSisID { get => usingManualSisID; set => usingManualSisID = value; }
+        public string ParentGuid { get => parentGuid; set => parentGuid = value; }
 
         public ADContainer(string name, string adspath, bool isOU, string guid)
         {
