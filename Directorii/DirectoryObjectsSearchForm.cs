@@ -65,7 +65,7 @@ namespace Directorii
                 for (int i = 0; i < resultCol.Count; i++)
                 {
                     Console.WriteLine(resultCol[i].Properties["adspath"][0].ToString());
-                    ADContainer adcontainer = new ADContainer(resultCol[i].Properties["name"][0].ToString(), resultCol[i].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[i].Properties["objectguid"][0]).ToString());
+                    ADContainer adcontainer = new ADContainer(resultCol[i].Properties["name"][0].ToString(), resultCol[i].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[i].Properties["objectguid"][0]).ToString(), schoolSisIDTextBox.Text);
                     ouSearchListBox.Items.Add(adcontainer);
                 }
 

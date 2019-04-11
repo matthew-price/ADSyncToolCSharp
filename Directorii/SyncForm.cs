@@ -134,7 +134,7 @@ namespace Directorii
                     for (int j = 0; j < resultCol.Count; j++)
                     {
                         Console.WriteLine("New OU: " + resultCol[j].Properties["Name"][0].ToString() + " PATH: " + resultCol[j].Properties["adspath"][0].ToString());
-                        ADContainer containerToAdd = new ADContainer(resultCol[j].Properties["Name"][0].ToString(), resultCol[j].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[j].Properties["objectguid"][0]).ToString());
+                        ADContainer containerToAdd = new ADContainer(resultCol[j].Properties["Name"][0].ToString(), resultCol[j].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[j].Properties["objectguid"][0]).ToString(), myParent.ListOfAdContainers[i].SchoolSisID);
                         if (!fullListOfContainers.ContainsKey(containerToAdd.Guid))
                         {
                             fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
@@ -144,7 +144,7 @@ namespace Directorii
                 }
                 else
                 {
-                    ADContainer containerToAdd = new ADContainer(myParent.ListOfAdContainers[i].Name, myParent.ListOfAdContainers[i].Adspath, false, myParent.ListOfAdContainers[i].Guid);
+                    ADContainer containerToAdd = new ADContainer(myParent.ListOfAdContainers[i].Name, myParent.ListOfAdContainers[i].Adspath, false, myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i].SchoolSisID);
                     fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
                     Console.WriteLine("***" +
                         "* ADDED GROUP: " + containerToAdd.Name);
@@ -221,12 +221,12 @@ namespace Directorii
             {
                 if (!group.UsingManualSisID)
                 {
-                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.Guid, group.Name, "GroupOwner", "Hafnarfjordur", group.ParentContainerID, "");
+                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.Guid, group.Name, "GroupOwner", group.SchoolSisID, group.ParentContainerID, "");
                     csv.AppendLine(newLine);
                 }
                 else
                 {
-                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.ManualSisID, group.Name, "GroupOwner", "Hafnarfjordur", group.ParentContainerID, "");
+                    string newLine = string.Format("{0},{1},{2},{3},{4},{5}", group.ManualSisID, group.Name, "GroupOwner", group.SchoolSisID, group.ParentContainerID, "");
                     csv.AppendLine(newLine);
                 }
             }

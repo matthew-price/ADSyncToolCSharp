@@ -42,17 +42,20 @@
             this.quitAppButton = new System.Windows.Forms.Label();
             this.manualSisIDTextBox = new System.Windows.Forms.TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.schoolSisIDTextBox = new System.Windows.Forms.TextBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(398, 87);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(128, 123);
             this.pictureBox1.TabIndex = 0;
@@ -64,8 +67,8 @@
             this.ouSearchListBox.ForeColor = System.Drawing.SystemColors.Window;
             this.ouSearchListBox.FormattingEnabled = true;
             this.ouSearchListBox.ItemHeight = 25;
-            this.ouSearchListBox.Location = new System.Drawing.Point(110, 627);
-            this.ouSearchListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.ouSearchListBox.Location = new System.Drawing.Point(110, 557);
+            this.ouSearchListBox.Margin = new System.Windows.Forms.Padding(4);
             this.ouSearchListBox.Name = "ouSearchListBox";
             this.ouSearchListBox.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.ouSearchListBox.Size = new System.Drawing.Size(666, 329);
@@ -74,8 +77,8 @@
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(162, 304);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox2.Location = new System.Drawing.Point(162, 248);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(64, 62);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -85,8 +88,8 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(162, 396);
-            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox3.Location = new System.Drawing.Point(162, 340);
+            this.pictureBox3.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(64, 62);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -99,8 +102,8 @@
             this.ouSearchQueryBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.ouSearchQueryBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.ouSearchQueryBox.ForeColor = System.Drawing.SystemColors.Menu;
-            this.ouSearchQueryBox.Location = new System.Drawing.Point(260, 329);
-            this.ouSearchQueryBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.ouSearchQueryBox.Location = new System.Drawing.Point(260, 273);
+            this.ouSearchQueryBox.Margin = new System.Windows.Forms.Padding(6);
             this.ouSearchQueryBox.Name = "ouSearchQueryBox";
             this.ouSearchQueryBox.Size = new System.Drawing.Size(388, 37);
             this.ouSearchQueryBox.TabIndex = 4;
@@ -110,8 +113,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Window;
-            this.panel1.Location = new System.Drawing.Point(162, 377);
-            this.panel1.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.panel1.Location = new System.Drawing.Point(162, 321);
+            this.panel1.Margin = new System.Windows.Forms.Padding(6);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(500, 2);
             this.panel1.TabIndex = 5;
@@ -126,8 +129,8 @@
             this.directoryObjectTypeComboBox.Items.AddRange(new object[] {
             "Organizational Unit",
             "Group"});
-            this.directoryObjectTypeComboBox.Location = new System.Drawing.Point(260, 415);
-            this.directoryObjectTypeComboBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.directoryObjectTypeComboBox.Location = new System.Drawing.Point(260, 359);
+            this.directoryObjectTypeComboBox.Margin = new System.Windows.Forms.Padding(6);
             this.directoryObjectTypeComboBox.Name = "directoryObjectTypeComboBox";
             this.directoryObjectTypeComboBox.Size = new System.Drawing.Size(398, 33);
             this.directoryObjectTypeComboBox.TabIndex = 6;
@@ -138,8 +141,8 @@
             this.searchButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.searchButton.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.searchButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.searchButton.Location = new System.Drawing.Point(374, 529);
-            this.searchButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.searchButton.Location = new System.Drawing.Point(374, 473);
+            this.searchButton.Margin = new System.Windows.Forms.Padding(6);
             this.searchButton.Name = "searchButton";
             this.searchButton.Size = new System.Drawing.Size(150, 52);
             this.searchButton.TabIndex = 7;
@@ -152,8 +155,8 @@
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Font = new System.Drawing.Font("Arial", 12F);
             this.addButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.addButton.Location = new System.Drawing.Point(608, 1081);
-            this.addButton.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.addButton.Location = new System.Drawing.Point(608, 1077);
+            this.addButton.Margin = new System.Windows.Forms.Padding(4);
             this.addButton.Name = "addButton";
             this.addButton.Size = new System.Drawing.Size(168, 48);
             this.addButton.TabIndex = 8;
@@ -190,8 +193,8 @@
             this.manualSisIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.manualSisIDTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.manualSisIDTextBox.ForeColor = System.Drawing.SystemColors.Menu;
-            this.manualSisIDTextBox.Location = new System.Drawing.Point(260, 998);
-            this.manualSisIDTextBox.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.manualSisIDTextBox.Location = new System.Drawing.Point(260, 928);
+            this.manualSisIDTextBox.Margin = new System.Windows.Forms.Padding(6);
             this.manualSisIDTextBox.Name = "manualSisIDTextBox";
             this.manualSisIDTextBox.Size = new System.Drawing.Size(552, 37);
             this.manualSisIDTextBox.TabIndex = 11;
@@ -201,13 +204,37 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(162, 973);
-            this.pictureBox4.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
+            this.pictureBox4.Location = new System.Drawing.Point(162, 903);
+            this.pictureBox4.Margin = new System.Windows.Forms.Padding(6);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(64, 62);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox4.TabIndex = 12;
             this.pictureBox4.TabStop = false;
+            // 
+            // schoolSisIDTextBox
+            // 
+            this.schoolSisIDTextBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
+            this.schoolSisIDTextBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.schoolSisIDTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.schoolSisIDTextBox.ForeColor = System.Drawing.SystemColors.Menu;
+            this.schoolSisIDTextBox.Location = new System.Drawing.Point(260, 993);
+            this.schoolSisIDTextBox.Margin = new System.Windows.Forms.Padding(6);
+            this.schoolSisIDTextBox.Name = "schoolSisIDTextBox";
+            this.schoolSisIDTextBox.Size = new System.Drawing.Size(378, 37);
+            this.schoolSisIDTextBox.TabIndex = 13;
+            this.schoolSisIDTextBox.Text = "TopLevel";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(162, 977);
+            this.pictureBox5.Margin = new System.Windows.Forms.Padding(6);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(64, 62);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox5.TabIndex = 14;
+            this.pictureBox5.TabStop = false;
             // 
             // DirectoryObjectsSearchForm
             // 
@@ -216,6 +243,8 @@
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.ClientSize = new System.Drawing.Size(888, 1231);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.schoolSisIDTextBox);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.manualSisIDTextBox);
             this.Controls.Add(this.quitAppButton);
@@ -230,7 +259,7 @@
             this.Controls.Add(this.ouSearchListBox);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "DirectoryObjectsSearchForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
@@ -239,6 +268,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -259,5 +289,7 @@
         private System.Windows.Forms.Label quitAppButton;
         private System.Windows.Forms.TextBox manualSisIDTextBox;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.TextBox schoolSisIDTextBox;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }

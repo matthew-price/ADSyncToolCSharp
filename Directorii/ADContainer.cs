@@ -12,7 +12,6 @@ namespace Directorii
         private string name;
         private string adspath;
         private bool isOU;
-        //private bool overrideParentID = false;
         private List<User> listOfMembers = new List<User>();
         private string guid;
         private List<ADContainer> listOfChildContainers = new List<ADContainer>();
@@ -20,6 +19,7 @@ namespace Directorii
         private string manualSisID;
         private string parentGuid;
         private bool usingManualSisID = false;
+        private string schoolSisID;
 
         public string Name { get => name; set => name = value; }
         public string Adspath { get => adspath; set => adspath = value; }
@@ -31,13 +31,15 @@ namespace Directorii
         public string ManualSisID { get => manualSisID; set => manualSisID = value; }
         public bool UsingManualSisID { get => usingManualSisID; set => usingManualSisID = value; }
         public string ParentGuid { get => parentGuid; set => parentGuid = value; }
+        public string SchoolSisID { get => schoolSisID; set => schoolSisID = value; }
 
-        public ADContainer(string name, string adspath, bool isOU, string guid)
+        public ADContainer(string name, string adspath, bool isOU, string guid, string schoolSisID)
         {
             this.name = name;
             this.adspath = adspath;
             this.isOU = isOU;
             this.Guid = guid;
+            this.schoolSisID = schoolSisID;
         }
 
         public override string ToString()
