@@ -11,6 +11,7 @@ using System.DirectoryServices;
 using System.DirectoryServices.ActiveDirectory;
 using System.IO;
 using Newtonsoft.Json;
+using AutoUpdaterDotNET;
 
 namespace Directorii
 {
@@ -131,7 +132,7 @@ namespace Directorii
 
         private void SplashForm_Load(object sender, EventArgs e)
         {
-
+            AutoUpdater.Start("https://s3.eu-west-2.amazonaws.com/directorii/DirectoriiUpdateCheck.xml");
         }
 
         private void openSyncDialogButton_Click(object sender, EventArgs e)
@@ -158,6 +159,7 @@ namespace Directorii
             this.Search = search;
             openServerSettingsDialogButton.ForeColor = System.Drawing.Color.FromArgb(128, 255, 128);
         }
+
 
     }
 }

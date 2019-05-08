@@ -161,8 +161,10 @@ namespace Directorii
             {
                 var uniqueUserSisId = user.Guid;
                 var userName = user.UserName;
-                var firstName = Regex.Replace(user.FirstName, @"[^\u0000-\u007F]+", string.Empty);
-                var lastName = Regex.Replace(user.LastName, @"[^\u0000-\u007F]+", string.Empty);
+                //var firstName = Regex.Replace(user.FirstName, @"[^\u0000-\u007F]+", string.Empty);
+                //var lastName = Regex.Replace(user.LastName, @"[^\u0000-\u007F]+", string.Empty);
+                var firstName = user.FirstName;
+                var lastName = user.LastName;
                 var uniqueSchoolSisId = "Hafnarfjordur";
                 var grade = "";
                 var email = user.Mail;
@@ -261,6 +263,17 @@ namespace Directorii
                         group.ParentContainerID = parentOU.Parent.Guid.ToString();
                         group.ParentGuid = parentOU.Parent.Guid.ToString();
                     }
+                } else
+                {
+                    DirectoryEntry parentGroup = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    Console.WriteLine("PARENT GROUP IS: " + parentGroup.Parent.Guid);
+
+                    if(fullListOfContainers.ContainsKey(parentGroup.Parent.Guid.ToString()) && fullListOfContainers[parentGroup.Parent.Guid.ToString()].UsingManualSisID)
+                    {
+                        Console.WriteLine("GROUP NAME TO CHECK: " + fullListOfContainers[parentGroup.Guid.ToString()].Name);
+                        Console.WriteLine("CUSTOM ID: " + fullListOfContainers[parentGroup.Parent.Guid.ToString()].ManualSisID);
+                    }
+
                 }
             }
         }
