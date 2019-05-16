@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADContainer.cs" />
+    <Compile Include="AdvancedSettingsDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AdvancedSettingsDialog.Designer.cs">
+      <DependentUpon>AdvancedSettingsDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Playground.cs" />
     <Compile Include="DirectoryBinder.cs" />
     <Compile Include="DirectoryObjectsListForm.cs">
@@ -101,6 +107,9 @@
       <DependentUpon>SyncForm.cs</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="AdvancedSettingsDialog.resx">
+      <DependentUpon>AdvancedSettingsDialog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DirectoryObjectsListForm.resx">
       <DependentUpon>DirectoryObjectsListForm.cs</DependentUpon>
     </EmbeddedResource>

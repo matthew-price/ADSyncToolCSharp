@@ -18,6 +18,8 @@ namespace Directorii
         private string encryptedPassword;
         private string entropy;
         private List<ADContainer> listOfADContainers;
+        private bool usingUsernameAsSisID;
+        private string defaultSisID;
 
         //Boolean ldaps;
 
@@ -27,6 +29,8 @@ namespace Directorii
             this.DirectoryServerType = directoryServerType;
             this.DirectoryServerUsername = directoryServerUsername;
             this.DirectoryServerDomain = directoryServerDomain;
+            usingUsernameAsSisID = false;
+            defaultSisID = "TopLevel";
             //this.ldaps = ldaps;
 
         }
@@ -37,6 +41,8 @@ namespace Directorii
         public string EncryptedPasssword { get => encryptedPassword; set => encryptedPassword = value; }
         public string Entropy { get => entropy; set => entropy = value; }
         public string DirectoryServerDomain { get => directoryServerDomain; set => directoryServerDomain = value; }
+        public bool UsingUsernameAsSisID { get => usingUsernameAsSisID; set => usingUsernameAsSisID = value; }
+        public string DefaultSisID { get => defaultSisID; set => defaultSisID = value; }
         internal List<ADContainer> ListOfADContainers { get => listOfADContainers; set => listOfADContainers = value; }
 
         public string getDecryptedPassword()

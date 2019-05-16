@@ -223,7 +223,16 @@ namespace Directorii
                     Console.WriteLine("WRITING GROUP GUID: " + group.Guid);
                     foreach(User user in group.ListOfMembers)
                     {
-                        string newLine = string.Format("{0},{1},{2},{3}", group.Guid, user.Guid, "Hafnarfjordur", "0");
+                        string groupSisID;
+                        if (group.UsingManualSisID)
+                        {
+                            groupSisID = group.ManualSisID;
+                        }
+                        else
+                        {
+                            groupSisID = group.Guid;
+                        }
+                        string newLine = string.Format("{0},{1},{2},{3}", groupSisID, user.Guid, "Hafnarfjordur", "0");
                         csv.AppendLine(newLine);
                     }
                 }

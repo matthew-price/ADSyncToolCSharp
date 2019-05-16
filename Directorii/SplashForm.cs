@@ -150,7 +150,8 @@ namespace Directorii
 
         private void openAdvancedDialogButton_Click(object sender, EventArgs e)
         {
-
+            AdvancedSettingsDialog advancedSettingsDialog = new AdvancedSettingsDialog(this, LoadedSettings);
+            advancedSettingsDialog.ShowDialog();
         }
         #endregion
 
