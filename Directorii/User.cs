@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Directorii
 {
-    class User
+    public class User
     {
 
         private string userName;

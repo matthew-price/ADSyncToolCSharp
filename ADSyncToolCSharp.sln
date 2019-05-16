@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.421
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ADSyncToolCSharp", "Directorii\ADSyncToolCSharp.csproj", "{BB641764-D117-4F94-B886-F519E4B9B3F5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Directorii", "Directorii\Directorii.csproj", "{BB641764-D117-4F94-B886-F519E4B9B3F5}"
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Directorii Installer", "Directorii Installer\Directorii Installer.vdproj", "{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DirectoriiTests", "DirectoriiTests\DirectoriiTests.csproj", "{17DB9471-5ADE-454D-9342-15D200676668}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -24,6 +26,12 @@ Global
 		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Beta|Any CPU.Build.0 = Beta
 		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Debug|Any CPU.ActiveCfg = Debug
 		{1D5DFAEF-B0DC-45FE-BBA7-4DCC8F78785C}.Release|Any CPU.ActiveCfg = Release
+		{17DB9471-5ADE-454D-9342-15D200676668}.Beta|Any CPU.ActiveCfg = Release|Any CPU
+		{17DB9471-5ADE-454D-9342-15D200676668}.Beta|Any CPU.Build.0 = Release|Any CPU
+		{17DB9471-5ADE-454D-9342-15D200676668}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{17DB9471-5ADE-454D-9342-15D200676668}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{17DB9471-5ADE-454D-9342-15D200676668}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{17DB9471-5ADE-454D-9342-15D200676668}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

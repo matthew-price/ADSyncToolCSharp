@@ -45,6 +45,7 @@ namespace Directorii
             search.PropertiesToLoad.Add("adspath");
             search.PropertiesToLoad.Add("objectguid");
             search.PropertiesToLoad.Add("name");
+            search.PropertiesToLoad.Add("distinguishedName");
 
             string directoryObjectType;
             string objectSearchType;
@@ -62,10 +63,18 @@ namespace Directorii
             SearchResultCollection resultCol = search.FindAll();
             if (resultCol != null)
             {
+                bool OUSelected = false;
+                if(directoryObjectTypeComboBox.SelectedText == "Organizational Unit")
+                {
+                    OUSelected = true;
+                }
                 for (int i = 0; i < resultCol.Count; i++)
                 {
                     Console.WriteLine(resultCol[i].Properties["adspath"][0].ToString());
-                    ADContainer adcontainer = new ADContainer(resultCol[i].Properties["name"][0].ToString(), resultCol[i].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[i].Properties["objectguid"][0]).ToString(), schoolSisIDTextBox.Text);
+                    ADContainer adcontainer = new ADContainer(resultCol[i].Properties["name"][0].ToString(), resultCol[i].Properties["adspath"][0].ToString(), OUSelected, new Guid((System.Byte[])resultCol[i].Properties["objectguid"][0]).ToString(), schoolSisIDTextBox.Text);
+                    Console.WriteLine("Dn is: " + resultCol[i].Properties["distinguishedName"][0].ToString());
+                    adcontainer.Cn = resultCol[i].Properties["distinguishedName"][0].ToString();
+                    Console.WriteLine("Saved DN is: " + adcontainer.Cn);
                     ouSearchListBox.Items.Add(adcontainer);
                 }
 
@@ -89,6 +98,7 @@ namespace Directorii
                 }
 
                 MyParent.MyParent.ListOfAdContainers.Add(item);
+                Console.WriteLine("ITEM DN IS: " + item.Cn);
             }
             Close();
         }

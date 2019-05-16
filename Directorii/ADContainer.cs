@@ -20,6 +20,7 @@ namespace Directorii
         private string parentGuid;
         private bool usingManualSisID = false;
         private string schoolSisID;
+        private string cn;
 
         public string Name { get => name; set => name = value; }
         public string Adspath { get => adspath; set => adspath = value; }
@@ -32,6 +33,7 @@ namespace Directorii
         public bool UsingManualSisID { get => usingManualSisID; set => usingManualSisID = value; }
         public string ParentGuid { get => parentGuid; set => parentGuid = value; }
         public string SchoolSisID { get => schoolSisID; set => schoolSisID = value; }
+        public string Cn { get => cn; set => cn = value; }
 
         public ADContainer(string name, string adspath, bool isOU, string guid, string schoolSisID)
         {

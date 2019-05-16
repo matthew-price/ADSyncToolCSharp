@@ -66,41 +66,72 @@ namespace Directorii
         {
             foreach (var group in fullListOfContainers.Values)
             {
-                Console.WriteLine("*****SEARCHING GROUP: " + group.Name + "GUID: " + group.Guid);
-                DirectoryEntry ouToSearch = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
-                DirectorySearcher userSearch = new DirectorySearcher(ouToSearch);
-                userSearch.SearchScope = SearchScope.OneLevel;
-
-                userSearch.PropertiesToLoad.Add("givenName");
-                userSearch.PropertiesToLoad.Add("sn");
-                userSearch.PropertiesToLoad.Add("mail");
-                userSearch.PropertiesToLoad.Add("samaccountname");
-                userSearch.PropertiesToLoad.Add("name");
-                userSearch.PropertiesToLoad.Add("objectguid");
-
-                userSearch.Filter = "(&(objectCategory=User)(givenname=*)(sn=*)(samaccountname=*)(name=*))";
-
-                SearchResultCollection resultCol = userSearch.FindAll();
-
-                foreach (SearchResult user in resultCol)
+                if (group.IsOU)
                 {
-                    //Console.WriteLine("USER ADDED: " + new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
-                    string mailAddress;
-                    if (user.Properties["mail"].Count == 0)
-                    {
-                        mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + settings.DirectoryServerDomain + ".com";
-                    }
-                    else
-                    {
-                        mailAddress = user.Properties["mail"][0].ToString();
-                    }
-                    User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
-                    group.ListOfMembers.Add(newUser);
-                    //Console.WriteLine("ADDED TO GROUP:" + group.Name);
+                    Console.WriteLine("*****SEARCHING OU: " + group.Name + "GUID: " + group.Guid);
+                    DirectoryEntry ouToSearch = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    DirectorySearcher userSearch = new DirectorySearcher(ouToSearch);
+                    userSearch.SearchScope = SearchScope.OneLevel;
 
-                    if (!fullListOfUsers.ContainsKey(newUser.Guid))
+                    userSearch.PropertiesToLoad.Add("givenName");
+                    userSearch.PropertiesToLoad.Add("sn");
+                    userSearch.PropertiesToLoad.Add("mail");
+                    userSearch.PropertiesToLoad.Add("samaccountname");
+                    userSearch.PropertiesToLoad.Add("name");
+                    userSearch.PropertiesToLoad.Add("objectguid");
+
+                    userSearch.Filter = "(&(objectCategory=User)(givenname=*)(sn=*)(samaccountname=*)(name=*))";
+
+                    SearchResultCollection resultCol = userSearch.FindAll();
+
+                    foreach (SearchResult user in resultCol)
                     {
-                        fullListOfUsers.Add(newUser.Guid, newUser);
+                        //Console.WriteLine("USER ADDED: " + new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        string mailAddress;
+                        if (user.Properties["mail"].Count == 0)
+                        {
+                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + settings.DirectoryServerDomain + ".com";
+                        }
+                        else
+                        {
+                            mailAddress = user.Properties["mail"][0].ToString();
+                        }
+                        User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        group.ListOfMembers.Add(newUser);
+                        //Console.WriteLine("ADDED TO GROUP:" + group.Name);
+
+                        if (!fullListOfUsers.ContainsKey(newUser.Guid))
+                        {
+                            fullListOfUsers.Add(newUser.Guid, newUser);
+                        }
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Searching Group: " + group.Name);
+                    DirectoryEntry groupDE = new DirectoryEntry("LDAP://" + settings.DirectoryServerHostname, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    DirectorySearcher groupSE = new DirectorySearcher(groupDE);
+                    groupSE.PropertiesToLoad.Add("givenName");
+                    groupSE.PropertiesToLoad.Add("sn");
+                    groupSE.PropertiesToLoad.Add("mail");
+                    groupSE.PropertiesToLoad.Add("samaccountname");
+                    groupSE.PropertiesToLoad.Add("name");
+                    groupSE.PropertiesToLoad.Add("objectguid");
+
+                    Console.WriteLine("GETTING USERS FOR GROUP WITH DN: " + group.Cn);
+                    groupSE.Filter = "(&(memberOf=" + group.Cn + ")(objectCategory=User)(givenname=*)(sn=*)(samaccountname=*)(name=*))";
+                    Console.WriteLine("FILTERING: " + groupSE.Filter);
+
+                    foreach (SearchResult user in groupSE.FindAll())
+                    {
+                        User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), user.Properties["mail"][0].ToString(), new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        group.ListOfMembers.Add(newUser);
+                        Console.WriteLine("ADDED TO GROUP:" + group.Name);
+
+                        if (!fullListOfUsers.ContainsKey(newUser.Guid))
+                        {
+                            fullListOfUsers.Add(newUser.Guid, newUser);
+                        }
                     }
                 }
             }
@@ -110,6 +141,7 @@ namespace Directorii
         {
             for (int i = 0; i < myParent.ListOfAdContainers.Count; i++)
             {
+                // Process Organizational Units
                 if (myParent.ListOfAdContainers[i].IsOU)
                 {
                     
@@ -143,11 +175,10 @@ namespace Directorii
                     }
                 }
                 else
+                // Process Groups
                 {
-                    ADContainer containerToAdd = new ADContainer(myParent.ListOfAdContainers[i].Name, myParent.ListOfAdContainers[i].Adspath, false, myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i].SchoolSisID);
-                    fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
-                    Console.WriteLine("***" +
-                        "* ADDED GROUP: " + containerToAdd.Name);
+                    fullListOfContainers.Add(myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i]);
+                    Console.WriteLine("***" + "* ADDED GROUP: " + myParent.ListOfAdContainers[i].Name);
                 }
             }
         }
@@ -205,11 +236,14 @@ namespace Directorii
         private void CheckWhetherParentGroupIsBeingImported()
         {
             foreach(ADContainer group in fullListOfContainers.Values){
-                var parentID = group.ParentGuid;
-                if (!fullListOfContainers.ContainsKey(parentID))
+                if (group.IsOU == true)
                 {
-                    Console.WriteLine("REMOVING PARENT ID FOR: " + group.Name);
-                    group.ParentContainerID = "";
+                    var parentID = group.ParentGuid;
+                    if (!fullListOfContainers.ContainsKey(parentID))
+                    {
+                        Console.WriteLine("REMOVING PARENT ID FOR: " + group.Name);
+                        group.ParentContainerID = "";
+                    }
                 }
             }
         }
