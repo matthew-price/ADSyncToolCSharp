@@ -50,7 +50,7 @@ namespace Directorii
             if (encryptedPassword != null)
             {
                 string decryptedPassword = UnicodeEncoding.UTF8.GetString(ProtectedData.Unprotect(Convert.FromBase64String(encryptedPassword), Convert.FromBase64String(Entropy), DataProtectionScope.LocalMachine));
-                Console.WriteLine("DECRYPTED PASSWORD: " + decryptedPassword);
+                //Console.WriteLine("DECRYPTED PASSWORD: " + decryptedPassword);
                 return decryptedPassword;
             }
             else

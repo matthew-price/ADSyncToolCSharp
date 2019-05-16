@@ -126,7 +126,7 @@ namespace Directorii
 
         private void openDirectoryObjectsDialogButton_Click(object sender, EventArgs e)
         {
-            DirectoryObjectsListForm directoryForm = new DirectoryObjectsListForm(this, Search);
+            DirectoryObjectsListForm directoryForm = new DirectoryObjectsListForm(this, Search, loadedSettings);
             directoryForm.ShowDialog();
         }
 

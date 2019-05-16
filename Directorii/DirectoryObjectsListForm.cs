@@ -21,14 +21,17 @@ namespace Directorii
 
         public SplashForm MyParent { get => myParent; set => myParent = value; }
 
+        private Settings settings;
+
         #endregion
 
 
-        public DirectoryObjectsListForm(SplashForm myParent, DirectorySearcher search)
+        public DirectoryObjectsListForm(SplashForm myParent, DirectorySearcher search, Settings settings)
         {
             InitializeComponent();
             this.search = search;
             this.MyParent = myParent;
+            this.settings = settings;
         }
 
         #region event handlers
@@ -39,7 +42,7 @@ namespace Directorii
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            DirectoryObjectsSearchForm searchForm = new DirectoryObjectsSearchForm(this, search);
+            DirectoryObjectsSearchForm searchForm = new DirectoryObjectsSearchForm(this, search, settings);
             searchForm.ShowDialog();
             UpdateUI();
         }

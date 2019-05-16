@@ -97,6 +97,16 @@ namespace Directorii
                             mailAddress = user.Properties["mail"][0].ToString();
                         }
                         User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+
+                        if (settings.UsingUsernameAsSisID)
+                        {
+                            newUser.UserSISId = user.Properties["samaccountname"][0].ToString();
+                        }
+                        else
+                        {
+                            newUser.UserSISId = newUser.Guid;
+                        }
+
                         group.ListOfMembers.Add(newUser);
                         //Console.WriteLine("ADDED TO GROUP:" + group.Name);
 
@@ -124,7 +134,27 @@ namespace Directorii
 
                     foreach (SearchResult user in groupSE.FindAll())
                     {
-                        User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), user.Properties["mail"][0].ToString(), new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+
+                        string mailAddress;
+                        if (user.Properties["mail"].Count == 0)
+                        {
+                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + settings.DirectoryServerDomain + ".com";
+                        }
+                        else
+                        {
+                            mailAddress = user.Properties["mail"][0].ToString();
+                        }
+
+                        User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress.ToString(), new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        if (settings.UsingUsernameAsSisID)
+                        {
+                            newUser.UserSISId = user.Properties["samaccountname"][0].ToString();
+                        }
+                        else
+                        {
+                            newUser.UserSISId = newUser.Guid;
+                        }
+
                         group.ListOfMembers.Add(newUser);
                         Console.WriteLine("ADDED TO GROUP:" + group.Name);
 
@@ -190,13 +220,13 @@ namespace Directorii
 
             foreach(User user in fullListOfUsers.Values)
             {
-                var uniqueUserSisId = user.Guid;
+                var uniqueUserSisId = user.UserSISId;
                 var userName = user.UserName;
                 //var firstName = Regex.Replace(user.FirstName, @"[^\u0000-\u007F]+", string.Empty);
                 //var lastName = Regex.Replace(user.LastName, @"[^\u0000-\u007F]+", string.Empty);
                 var firstName = user.FirstName;
                 var lastName = user.LastName;
-                var uniqueSchoolSisId = "Hafnarfjordur";
+                var uniqueSchoolSisId = settings.DefaultSisID;
                 var grade = "";
                 var email = user.Mail;
                 var user_type = 1;
@@ -232,7 +262,7 @@ namespace Directorii
                         {
                             groupSisID = group.Guid;
                         }
-                        string newLine = string.Format("{0},{1},{2},{3}", groupSisID, user.Guid, "Hafnarfjordur", "0");
+                        string newLine = string.Format("{0},{1},{2},{3}", groupSisID, user.UserSISId, group.SchoolSisID, "0");
                         csv.AppendLine(newLine);
                     }
                 }

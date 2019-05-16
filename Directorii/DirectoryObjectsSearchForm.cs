@@ -20,13 +20,15 @@ namespace Directorii
         private DirectoryObjectsListForm myParent;
 
         public DirectoryObjectsListForm MyParent { get => myParent; set => myParent = value; }
+        private Settings settings;
         #endregion
 
-        public DirectoryObjectsSearchForm(DirectoryObjectsListForm myParent, DirectorySearcher search)
+        public DirectoryObjectsSearchForm(DirectoryObjectsListForm myParent, DirectorySearcher search, Settings settings)
         {
             InitializeComponent();
             this.MyParent = myParent;
             this.search = search;
+            this.settings = settings;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
@@ -37,6 +39,7 @@ namespace Directorii
         private void DirectoryObjectsSearchForm_Load(object sender, EventArgs e)
         {
             directoryObjectTypeComboBox.SelectedIndex = 0;
+            schoolSisIDTextBox.Text = settings.DefaultSisID;
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -100,6 +103,8 @@ namespace Directorii
                 {
                     item.ManualSisID = "TopLevel";
                 }
+
+                item.SchoolSisID = schoolSisIDTextBox.Text;
 
                 MyParent.MyParent.ListOfAdContainers.Add(item);
                 Console.WriteLine("ITEM DN IS: " + item.Cn);
