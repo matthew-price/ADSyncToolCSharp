@@ -96,6 +96,10 @@ namespace Directorii
                     item.UsingManualSisID = true;
                     Console.WriteLine("MANUAL SIS ID DETECTED");
                 }
+                else
+                {
+                    item.ManualSisID = "TopLevel";
+                }
 
                 MyParent.MyParent.ListOfAdContainers.Add(item);
                 Console.WriteLine("ITEM DN IS: " + item.Cn);
