@@ -236,8 +236,13 @@ namespace Directorii
                 string newLine = string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9}", uniqueUserSisId.ToString(), userName.ToString(), firstName.ToString(), lastName.ToString(), uniqueSchoolSisId.ToString(), grade.ToString(), email.ToString(), user_type.ToString(), password.ToString(), authentication.ToString());
                 csv.AppendLine(newLine);
             }
-
-            File.WriteAllText(myParent.SavePath + "\\users-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
+            try
+            {
+                File.WriteAllText(myParent.SavePath + "\\users-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
+            } catch (System.IO.IOException)
+            {
+                MessageBox.Show("Unable to write users-v2.csv file. \n Is the file open in another application?");
+            }
         }
 
         private void WriteMemberships()
@@ -267,9 +272,13 @@ namespace Directorii
                     }
                 }
             }
-
-            File.WriteAllText(myParent.SavePath + "\\memberships-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
-
+            try
+            {
+                File.WriteAllText(myParent.SavePath + "\\memberships-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
+            } catch (System.IO.IOException)
+            {
+                MessageBox.Show("Unable to write to memberships-v2.csv \n Is the file being used by another application?");
+            }
         }
 
         private void CheckWhetherParentGroupIsBeingImported()
@@ -305,9 +314,13 @@ namespace Directorii
                     csv.AppendLine(newLine);
                 }
             }
-
-            File.WriteAllText(myParent.SavePath + "\\groups-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
-
+            try
+            {
+                File.WriteAllText(myParent.SavePath + "\\groups-v2.csv", csv.ToString(), new System.Text.UTF8Encoding(false));
+            }
+            catch (System.IO.IOException){
+                MessageBox.Show("Unable to write groups-v2.csv file. \n Is the file being used by another application?");
+            }
         }
 
      
