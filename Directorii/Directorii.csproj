@@ -92,6 +92,7 @@
       <DependentUpon>ServerSettingsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Settings.cs" />
+    <Compile Include="NetworkShareAccesser.cs" />
     <Compile Include="SplashForm.cs">
       <SubType>Form</SubType>
     </Compile>
