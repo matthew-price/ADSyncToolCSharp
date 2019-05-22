@@ -134,6 +134,7 @@
             // 
             // smbDriveLetterComboBox
             // 
+            this.smbDriveLetterComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.smbDriveLetterComboBox.FormattingEnabled = true;
             this.smbDriveLetterComboBox.Items.AddRange(new object[] {
             "A",

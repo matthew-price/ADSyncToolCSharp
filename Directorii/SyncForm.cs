@@ -368,9 +368,16 @@ namespace Directorii
 
         private void CopyFilesToSmbShare()
         {
+            if (!settings.SmbCopyEnabled) return;
+            try
+            {
                 File.Copy(myParent.SavePath + "\\users-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\users-v2.csv", true);
                 File.Copy(myParent.SavePath + "\\memberships-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\memberships-v2.csv", true);
                 File.Copy(myParent.SavePath + "\\groups-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\groups-v2.csv", true);
+            } catch (IOException)
+            {
+                MessageBox.Show("Unable to write files to the Rocket share. \nIs the share mapped to the correct drive letter and available?", "Failed to copy sync files", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
         }
 
         private void label2_Click(object sender, EventArgs e)

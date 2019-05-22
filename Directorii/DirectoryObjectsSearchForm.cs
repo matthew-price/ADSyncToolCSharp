@@ -105,6 +105,7 @@ namespace Directorii
                 }
 
                 item.SchoolSisID = schoolSisIDTextBox.Text;
+                item.IsOU = isOU;
 
                 MyParent.MyParent.ListOfAdContainers.Add(item);
                 Console.WriteLine("ITEM DN IS: " + item.Cn);

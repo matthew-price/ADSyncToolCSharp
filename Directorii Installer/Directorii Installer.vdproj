@@ -15,6 +15,18 @@
     {
         "Entry"
         {
+        "MsmKey" = "8:_391DE7D4D481004CA68138AAAE1DB8E8"
+        "OwnerKey" = "8:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_391DE7D4D481004CA68138AAAE1DB8E8"
+        "OwnerKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
         "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
         "MsmSig" = "8:_UNDEFINED"
@@ -33,8 +45,38 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
+        "OwnerKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+        "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_391DE7D4D481004CA68138AAAE1DB8E8"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -208,6 +250,37 @@
         }
         "File"
         {
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_391DE7D4D481004CA68138AAAE1DB8E8"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_391DE7D4D481004CA68138AAAE1DB8E8"
+                    {
+                    "Name" = "8:System.IO.Compression.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_3DC4F69022E19BEEDB15F834A1A23AB2"
             {
             "AssemblyRegister" = "3:1"
@@ -243,7 +316,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8BCD4D4719574C2D93B29F94861DE47F"
@@ -284,6 +357,68 @@
                     }
                 }
             "SourcePath" = "8:AutoUpdater.NET.DLL"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:TRUE"
+            "AssemblyAsmDisplayName" = "8:System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_D47D04D9A8D1B1246EDFEB2A7483B1FD"
+                    {
+                    "Name" = "8:System.IO.Compression.FileSystem.dll"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:System.IO.Compression.FileSystem.dll"
+            "TargetName" = "8:"
+            "Tag" = "8:"
+            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:TRUE"
+            "IsolateTo" = "8:"
+            }
+            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+            {
+            "AssemblyRegister" = "3:1"
+            "AssemblyIsInGAC" = "11:FALSE"
+            "AssemblyAsmDisplayName" = "8:Microsoft.Win32.TaskScheduler, Version=2.8.11.0, Culture=neutral, PublicKeyToken=c416bc1b32d97233, processorArchitecture=MSIL"
+                "ScatterAssemblies"
+                {
+                    "_E46BB0A0CC798A9FC5FB4A75C253B3CC"
+                    {
+                    "Name" = "8:Microsoft.Win32.TaskScheduler.DLL"
+                    "Attributes" = "3:512"
+                    }
+                }
+            "SourcePath" = "8:Microsoft.Win32.TaskScheduler.DLL"
             "TargetName" = "8:"
             "Tag" = "8:"
             "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
@@ -368,15 +503,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Directorii"
-        "ProductCode" = "8:{A56C7A03-2274-4C40-A4EB-4F501E1AD338}"
-        "PackageCode" = "8:{32654C5E-903D-471E-AD21-BEE48BBE5658}"
+        "ProductCode" = "8:{DFF6C3AF-E787-4F33-BE93-36C1AB091DA6}"
+        "PackageCode" = "8:{75D34EBD-DB27-4C67-8A94-CD8D03260BEE}"
         "UpgradeCode" = "8:{5C0AE55D-81A3-4135-9402-3542932B307C}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.2"
+        "ProductVersion" = "8:1.1.4"
         "Manufacturer" = "8:mattprice.eu"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
