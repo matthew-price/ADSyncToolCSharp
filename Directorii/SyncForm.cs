@@ -59,7 +59,9 @@ namespace Directorii
             WriteGroups();
 
             doneLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-
+            Console.WriteLine("starting smb copy");
+            Console.WriteLine("finishing smb copy");
+            CopyFilesToSmbShare();
         }
 
         private void AddMembersToADContainers()
@@ -362,6 +364,11 @@ namespace Directorii
 
                 }
             }
+        }
+
+        private void CopyFilesToSmbShare()
+        {
+                File.Copy(@"C:\ProgramData\ADSyncTool\users-v2.csv", @"Z:\users-v2.csv");
         }
 
         private void label2_Click(object sender, EventArgs e)
