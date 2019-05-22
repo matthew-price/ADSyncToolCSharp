@@ -368,7 +368,9 @@ namespace Directorii
 
         private void CopyFilesToSmbShare()
         {
-                File.Copy(@"C:\ProgramData\ADSyncTool\users-v2.csv", @"Z:\users-v2.csv");
+                File.Copy(myParent.SavePath + "\\users-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\users-v2.csv", true);
+                File.Copy(myParent.SavePath + "\\memberships-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\memberships-v2.csv", true);
+                File.Copy(myParent.SavePath + "\\groups-v2.csv", settings.SmbDriveLetter + ":\\sis_import\\groups-v2.csv", true);
         }
 
         private void label2_Click(object sender, EventArgs e)

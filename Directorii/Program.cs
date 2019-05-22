@@ -24,11 +24,11 @@ namespace Directorii
             {
                 Console.WriteLine("running in silent mode");
                 Console.WriteLine("There are :" + args.Length + "arguments.");
-                foreach(var arg in args)
-                {
-                    Console.WriteLine(arg.ToString());
-                }
-                Console.ReadLine();
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                SplashForm splashform = new SplashForm();
+                SyncForm syncForm = new SyncForm(splashform, splashform.LoadedSettings, splashform.Search);
+                syncForm.ShowDialog();
             }
         }
     }

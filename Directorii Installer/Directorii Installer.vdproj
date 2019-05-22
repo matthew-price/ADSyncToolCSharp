@@ -40,13 +40,13 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BAD8A098E823CB1F85FFFCE0EAAA15F1"
+        "OwnerKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
+        "OwnerKey" = "8:_BAD8A098E823CB1F85FFFCE0EAAA15F1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -148,6 +148,38 @@
                 }
             }
         }
+        "Silent"
+        {
+        "DisplayName" = "8:Silent"
+        "IsDebugOnly" = "11:FALSE"
+        "IsReleaseOnly" = "11:FALSE"
+        "OutputFilename" = "8:Silent\\Directorii Installer.msi"
+        "PackageFilesAs" = "3:2"
+        "PackageFileSize" = "3:-2147483648"
+        "CabType" = "3:1"
+        "Compression" = "3:2"
+        "SignOutput" = "11:FALSE"
+        "CertificateFile" = "8:"
+        "PrivateKeyFile" = "8:"
+        "TimeStampServer" = "8:"
+        "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+                "Items"
+                {
+                    "{EDC2488A-8267-493A-A98E-7D9C3B36CDF3}:.NETFramework,Version=v4.6.1"
+                    {
+                    "Name" = "8:Microsoft .NET Framework 4.6.1 (x86 and x64)"
+                    "ProductCode" = "8:.NETFramework,Version=v4.6.1"
+                    }
+                }
+            }
+        }
     }
     "Deployable"
     {
@@ -183,6 +215,11 @@
             "AssemblyAsmDisplayName" = "8:Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_3DC4F69022E19BEEDB15F834A1A23AB2"
+                    {
+                    "Name" = "8:Newtonsoft.Json.DLL"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:Newtonsoft.Json.DLL"
             "TargetName" = "8:"
@@ -206,7 +243,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.2.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8BCD4D4719574C2D93B29F94861DE47F"
@@ -240,6 +277,11 @@
             "AssemblyAsmDisplayName" = "8:AutoUpdater.NET, Version=1.5.1.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
+                    "_BAD8A098E823CB1F85FFFCE0EAAA15F1"
+                    {
+                    "Name" = "8:AutoUpdater.NET.DLL"
+                    "Attributes" = "3:512"
+                    }
                 }
             "SourcePath" = "8:AutoUpdater.NET.DLL"
             "TargetName" = "8:"
