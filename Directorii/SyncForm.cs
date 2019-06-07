@@ -24,6 +24,7 @@ namespace Directorii
         private Dictionary<string, ADContainer> fullListOfContainers = new Dictionary<string, ADContainer>();
         private Settings settings;
         private DirectorySearcher search; //only used for user searching. Searching for child OUs requires a fresh DirectorySearcher, as there will be a different Base Path for each parent OU.
+        private bool syncErrorExperienced = false;
 
         #endregion
 
@@ -45,23 +46,22 @@ namespace Directorii
         {
 
             CreateFullListOfADContainers();
-            AddMembersToADContainers();
-            writeUsers();
+            if (syncErrorExperienced) { preparingUsersLabel.ForeColor = System.Drawing.Color.Red; }
+            if (!syncErrorExperienced) { AddMembersToADContainers(); }
+            if (!syncErrorExperienced) { writeUsers(); }
 
-            preparingMembershipsLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            WriteMemberships();
+            if (!syncErrorExperienced) { preparingMembershipsLabel.ForeColor = System.Drawing.Color.WhiteSmoke; } else { preparingMembershipsLabel.ForeColor = System.Drawing.Color.Red;}
+            if (!syncErrorExperienced) { WriteMemberships(); }
 
-            preparingHeirarchyLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            setParentOUGUIDs();
+            if (!syncErrorExperienced) { preparingHeirarchyLabel.ForeColor = System.Drawing.Color.WhiteSmoke; } else { preparingHeirarchyLabel.ForeColor = System.Drawing.Color.Red; }
+            if (!syncErrorExperienced) { setParentOUGUIDs(); }
 
-            preparingGroupsLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            CheckWhetherParentGroupIsBeingImported();
-            WriteGroups();
+            if (!syncErrorExperienced) { preparingGroupsLabel.ForeColor = System.Drawing.Color.WhiteSmoke; } else { preparingGroupsLabel.ForeColor = System.Drawing.Color.Red; }
+            if (!syncErrorExperienced) { CheckWhetherParentGroupIsBeingImported(); }
+            if (!syncErrorExperienced) { WriteGroups(); }
 
-            doneLabel.ForeColor = System.Drawing.Color.WhiteSmoke;
-            Console.WriteLine("starting smb copy");
-            Console.WriteLine("finishing smb copy");
-            CopyFilesToSmbShare();
+            if (!syncErrorExperienced) { doneLabel.ForeColor = System.Drawing.Color.WhiteSmoke; } else { doneLabel.ForeColor = System.Drawing.Color.Red; }
+            if (!syncErrorExperienced) { CopyFilesToSmbShare(); }
         }
 
         private void AddMembersToADContainers()
@@ -193,17 +193,25 @@ namespace Directorii
                     searchForChildOUs.PropertiesToLoad.Add("objectguid");
                     searchForChildOUs.Filter = "(objectCategory=organizationalUnit)";
 
-                    SearchResultCollection resultCol = searchForChildOUs.FindAll();
-
-                    for (int j = 0; j < resultCol.Count; j++)
+                    try
                     {
-                        Console.WriteLine("New OU: " + resultCol[j].Properties["Name"][0].ToString() + " PATH: " + resultCol[j].Properties["adspath"][0].ToString());
-                        ADContainer containerToAdd = new ADContainer(resultCol[j].Properties["Name"][0].ToString(), resultCol[j].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[j].Properties["objectguid"][0]).ToString(), myParent.ListOfAdContainers[i].SchoolSisID);
-                        if (!fullListOfContainers.ContainsKey(containerToAdd.Guid))
+                        SearchResultCollection resultCol = searchForChildOUs.FindAll();
+
+                        for (int j = 0; j < resultCol.Count; j++)
                         {
-                            fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
-                            Console.WriteLine("*** ADDED OU: " + containerToAdd.Name);
+                            Console.WriteLine("New OU: " + resultCol[j].Properties["Name"][0].ToString() + " PATH: " + resultCol[j].Properties["adspath"][0].ToString());
+                            ADContainer containerToAdd = new ADContainer(resultCol[j].Properties["Name"][0].ToString(), resultCol[j].Properties["adspath"][0].ToString(), true, new Guid((System.Byte[])resultCol[j].Properties["objectguid"][0]).ToString(), myParent.ListOfAdContainers[i].SchoolSisID);
+                            if (!fullListOfContainers.ContainsKey(containerToAdd.Guid))
+                            {
+                                fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
+                                Console.WriteLine("*** ADDED OU: " + containerToAdd.Name);
+                            }
                         }
+                    } catch (System.Runtime.InteropServices.COMException)
+                    {
+                        MessageBox.Show("The server does not appear to be running at " + myParent.ListOfAdContainers[i].Adspath, "Cannot reach server", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        syncErrorExperienced = true;
+                        return;
                     }
                 }
                 else
