@@ -79,6 +79,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ADContainer.cs" />
+    <Compile Include="ADDomainController.cs" />
     <Compile Include="AdvancedSettingsDialog.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -98,6 +99,12 @@
     </Compile>
     <Compile Include="DirectoryObjectsSearchForm.Designer.cs">
       <DependentUpon>DirectoryObjectsSearchForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ServerListForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ServerListForm.Designer.cs">
+      <DependentUpon>ServerListForm.cs</DependentUpon>
     </Compile>
     <Compile Include="ServerSettingsForm.cs">
       <SubType>Form</SubType>
@@ -129,6 +136,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DirectoryObjectsSearchForm.resx">
       <DependentUpon>DirectoryObjectsSearchForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ServerListForm.resx">
+      <DependentUpon>ServerListForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ServerSettingsForm.resx">
       <DependentUpon>ServerSettingsForm.cs</DependentUpon>
@@ -165,6 +175,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\settings-2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\database.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
