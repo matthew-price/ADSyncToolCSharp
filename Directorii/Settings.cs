@@ -22,6 +22,9 @@ namespace Directorii
         private string defaultSisID;
         private string smbDriveLetter = "X";
         private bool smbCopyEnabled = false;
+        private bool ldaps = false;
+        private string ldapConnectionAddress;
+        private List<ADDomainController> listOfADDomainControllers;
 
         //Boolean ldaps;
 
@@ -47,7 +50,10 @@ namespace Directorii
         public string DefaultSisID { get => defaultSisID; set => defaultSisID = value; }
         public string SmbDriveLetter { get => smbDriveLetter; set => smbDriveLetter = value; }
         public bool SmbCopyEnabled { get => smbCopyEnabled; set => smbCopyEnabled = value; }
+        public bool Ldaps { get => ldaps; set => ldaps = value; }
+        public string LdapConnectionAddress { get => ldapConnectionAddress; set => ldapConnectionAddress = value; }
         internal List<ADContainer> ListOfADContainers { get => listOfADContainers; set => listOfADContainers = value; }
+        internal List<ADDomainController> ListOfADDomainControllers { get => listOfADDomainControllers; set => listOfADDomainControllers = value; }
 
         public string getDecryptedPassword()
         {

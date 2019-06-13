@@ -21,11 +21,14 @@ namespace Directorii
         internal Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
 
         private Settings loadedSettings;
+        private bool ldapsSwitch;
+        private ADDomainController dc;
 
-        public ServerSettingsForm()
+        public ServerSettingsForm(ADDomainController dc)
         {
             InitializeComponent();
             this.loadedSettings = LoadedSettings;
+            this.dc = dc;
         }
 
         private void tableLayoutPanel1_Paint(object sender, PaintEventArgs e)
@@ -55,21 +58,22 @@ namespace Directorii
 
         private void saveButton_Click(object sender, EventArgs e)
         {
-            //TODO implement save functionality
-
             string usernameToSave;
-            if (usernameTextBox.Text.Contains('\\'))
+            if (!usernameTextBox.Text.Contains('\\') && !(domainTextBox.Text == "Domain"))
             {
-                usernameToSave = usernameTextBox.Text;
+                usernameToSave = domainTextBox.Text + '\\' + usernameTextBox.Text;
+                
             }
             else
             {
-                usernameToSave = domainTextBox.Text + '\\' + usernameTextBox.Text;
+                    usernameToSave = usernameTextBox.Text;
             }
 
             #region test server functionality
 
-            DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + hostnameTextBox.Text, usernameToSave, passwordTextBox.Text);
+            string ldapProtocol;
+            if (ldapsSwitch) { ldapProtocol = ":636"; } else { ldapProtocol = ":389"; }
+            DirectoryEntry searchRoot = new DirectoryEntry("LDAP://" + hostnameTextBox.Text + ldapProtocol, usernameToSave, passwordTextBox.Text);
             DirectorySearcher search = new DirectorySearcher(searchRoot);
             search.PropertiesToLoad.Add("samaccountname");
             try
@@ -88,19 +92,16 @@ namespace Directorii
             catch (DirectoryServicesCOMException ex)
             {
                 MessageBox.Show("Error connecting. Please check server settings and username / password. \n Full details follow. \n" + ex);
-            } catch (System.Runtime.InteropServices.COMException)
+            } catch (System.Runtime.InteropServices.COMException ex)
             {
-                MessageBox.Show("Server does not appear to be running at address: " + hostnameTextBox.Text);
+                MessageBox.Show("Server does not appear to be running at address: " + hostnameTextBox.Text + "\n" + ex);
             }
             #endregion
 
             #region Creating Settings object, and writing to JSON file
 
-
-
-            Settings settings = new Settings(hostnameTextBox.Text, "AD", usernameToSave, domainTextBox.Text);
-            encryptPassword(settings);
-            myParent.LoadedSettings = settings;
+            dc.Ldaps = ldapsSwitch;
+            encryptPassword(dc);      
 
             Close();
 
@@ -108,7 +109,7 @@ namespace Directorii
         }
 
 
-        private void encryptPassword(Settings settings)
+        private void encryptPassword(ADDomainController dc)
         {
             byte[] toEncrypt = UnicodeEncoding.UTF8.GetBytes(passwordTextBox.Text);
             byte[] entropy = new byte[16];
@@ -117,8 +118,8 @@ namespace Directorii
         
 
             // converted encryptedData from a byte[] to a string, and write it to settings.EncryptedPassword
-            settings.EncryptedPasssword = Convert.ToBase64String(encryptedData);
-            settings.setEntropy(Convert.ToBase64String(entropy));
+            dc.EncryptedPassword = Convert.ToBase64String(encryptedData);
+            dc.Entropy = (Convert.ToBase64String(entropy));
        
         }
 
@@ -130,6 +131,25 @@ namespace Directorii
             passwordTextBox.Text = loadedSettings.getDecryptedPassword();
             usernameTextBox.Text = loadedSettings.DirectoryServerUsername;
             domainTextBox.Text = loadedSettings.DirectoryServerDomain;
+            ldapsSwitch = loadedSettings.Ldaps;
+            if (loadedSettings.Ldaps)
+            {
+                ldapEnabledLabel.Text = "LDAPS Enabled";
+            }
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            if (loadedSettings.Ldaps)
+            {
+                ldapEnabledLabel.Text = "LDAPS Disabled";
+                ldapsSwitch = false;
+            }
+            else
+            {
+                ldapEnabledLabel.Text = "LDAPS Enabled";
+                ldapsSwitch = true;
+            }
         }
     }
 }

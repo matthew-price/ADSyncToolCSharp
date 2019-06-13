@@ -118,10 +118,11 @@ namespace Directorii
             }
 
             //Proceed to load the Settings form
-            ServerSettingsForm settingsForm = new ServerSettingsForm();
-            settingsForm.myParent = this;
-            settingsForm.LoadedSettings = LoadedSettings;
-            settingsForm.ShowDialog();
+            ServerListForm serverListForm = new ServerListForm(this);
+            //ServerSettingsForm settingsForm = new ServerSettingsForm(this);
+            //settingsForm.myParent = this;
+            //settingsForm.LoadedSettings = LoadedSettings;
+            serverListForm.ShowDialog();
         }
 
         private void openDirectoryObjectsDialogButton_Click(object sender, EventArgs e)

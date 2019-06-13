@@ -73,6 +73,7 @@ namespace Directorii
                     Console.WriteLine("*****SEARCHING OU: " + group.Name + "GUID: " + group.Guid);
                     DirectoryEntry ouToSearch = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     DirectorySearcher userSearch = new DirectorySearcher(ouToSearch);
+                    userSearch.PageSize = 1000;
                     userSearch.SearchScope = SearchScope.OneLevel;
 
                     userSearch.PropertiesToLoad.Add("givenName");
@@ -121,7 +122,9 @@ namespace Directorii
                 else
                 {
                     Console.WriteLine("Searching Group: " + group.Name);
-                    DirectoryEntry groupDE = new DirectoryEntry("LDAP://" + settings.DirectoryServerHostname, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    string port;
+                    if (settings.Ldaps) { port = ":636";} else { port = ":389"; }
+                    DirectoryEntry groupDE = new DirectoryEntry("LDAP://" + settings.DirectoryServerHostname + port, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     DirectorySearcher groupSE = new DirectorySearcher(groupDE);
                     groupSE.PropertiesToLoad.Add("givenName");
                     groupSE.PropertiesToLoad.Add("sn");
@@ -183,9 +186,9 @@ namespace Directorii
                         fullListOfContainers.Remove(myParent.ListOfAdContainers[i].Guid);
                     }
                     fullListOfContainers.Add(myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i]);
-                    
 
                     DirectoryEntry parentOU = new DirectoryEntry(myParent.ListOfAdContainers[i].Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    Console.WriteLine("!!!!!!" + myParent.ListOfAdContainers[i].Adspath);
                     DirectorySearcher searchForChildOUs = new DirectorySearcher(parentOU);
 
                     searchForChildOUs.PropertiesToLoad.Add("adspath");
@@ -341,7 +344,6 @@ namespace Directorii
             {
                 if (group.IsOU)
                 {
-  
                     DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
                     //Console.WriteLine("PARENT is: " + parentOU.Parent.Guid);
 
