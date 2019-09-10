@@ -26,6 +26,16 @@ namespace Directorii
         private DirectorySearcher search; //only used for user searching. Searching for child OUs requires a fresh DirectorySearcher, as there will be a different Base Path for each parent OU.
         private bool syncErrorExperienced = false;
 
+        // for window dragging ability
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        // end of window dragging ability
+
         #endregion
 
         public SyncForm(SplashForm myParent, Settings settings, DirectorySearcher search)
@@ -68,10 +78,12 @@ namespace Directorii
         {
             foreach (var group in fullListOfContainers.Values)
             {
+                // getting ADDC details
+                ADDomainController dc = myParent.DictionaryOfADDomainControllers[group.DomainControllerKey];
                 if (group.IsOU)
                 {
                     Console.WriteLine("*****SEARCHING OU: " + group.Name + "GUID: " + group.Guid);
-                    DirectoryEntry ouToSearch = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    DirectoryEntry ouToSearch = new DirectoryEntry(group.Adspath, dc.DirectoryServerUsername, dc.getDecryptedPassword());
                     DirectorySearcher userSearch = new DirectorySearcher(ouToSearch);
                     userSearch.PageSize = 1000;
                     userSearch.SearchScope = SearchScope.OneLevel;
@@ -93,13 +105,14 @@ namespace Directorii
                         string mailAddress;
                         if (user.Properties["mail"].Count == 0)
                         {
-                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + settings.DirectoryServerDomain + ".com";
+                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + dc.DirectoryServerDomain + ".com";
                         }
                         else
                         {
                             mailAddress = user.Properties["mail"][0].ToString();
                         }
                         User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress, new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        newUser.SchoolSISId = group.SchoolSisID;
 
                         if (settings.UsingUsernameAsSisID)
                         {
@@ -123,8 +136,8 @@ namespace Directorii
                 {
                     Console.WriteLine("Searching Group: " + group.Name);
                     string port;
-                    if (settings.Ldaps) { port = ":636";} else { port = ":389"; }
-                    DirectoryEntry groupDE = new DirectoryEntry("LDAP://" + settings.DirectoryServerHostname + port, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    if (dc.Ldaps) { port = ":636";} else { port = ":389"; }
+                    DirectoryEntry groupDE = new DirectoryEntry("LDAP://" + dc.DirectoryServerHostname + port, dc.DirectoryServerUsername, dc.getDecryptedPassword());
                     DirectorySearcher groupSE = new DirectorySearcher(groupDE);
                     groupSE.PropertiesToLoad.Add("givenName");
                     groupSE.PropertiesToLoad.Add("sn");
@@ -143,7 +156,7 @@ namespace Directorii
                         string mailAddress;
                         if (user.Properties["mail"].Count == 0)
                         {
-                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + settings.DirectoryServerDomain + ".com";
+                            mailAddress = user.Properties["samaccountname"][0].ToString() + "@" + dc.DirectoryServerDomain + ".com";
                         }
                         else
                         {
@@ -151,6 +164,7 @@ namespace Directorii
                         }
 
                         User newUser = new User(user.Properties["samaccountname"][0].ToString(), user.Properties["givenName"][0].ToString(), user.Properties["sn"][0].ToString(), mailAddress.ToString(), new Guid((System.Byte[])user.Properties["objectguid"][0]).ToString());
+                        newUser.SchoolSISId = group.SchoolSisID;
                         if (settings.UsingUsernameAsSisID)
                         {
                             newUser.UserSISId = user.Properties["samaccountname"][0].ToString();
@@ -187,7 +201,8 @@ namespace Directorii
                     }
                     fullListOfContainers.Add(myParent.ListOfAdContainers[i].Guid, myParent.ListOfAdContainers[i]);
 
-                    DirectoryEntry parentOU = new DirectoryEntry(myParent.ListOfAdContainers[i].Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    ADDomainController dc = myParent.DictionaryOfADDomainControllers[myParent.ListOfAdContainers[i].DomainControllerKey];
+                    DirectoryEntry parentOU = new DirectoryEntry(myParent.ListOfAdContainers[i].Adspath, dc.DirectoryServerUsername, dc.getDecryptedPassword());
                     Console.WriteLine("!!!!!!" + myParent.ListOfAdContainers[i].Adspath);
                     DirectorySearcher searchForChildOUs = new DirectorySearcher(parentOU);
 
@@ -207,6 +222,7 @@ namespace Directorii
                             if (!fullListOfContainers.ContainsKey(containerToAdd.Guid))
                             {
                                 fullListOfContainers.Add(containerToAdd.Guid, containerToAdd);
+                                containerToAdd.DomainControllerKey = myParent.ListOfAdContainers[i].DomainControllerKey;
                                 Console.WriteLine("*** ADDED OU: " + containerToAdd.Name);
                             }
                         }
@@ -239,7 +255,7 @@ namespace Directorii
                 //var lastName = Regex.Replace(user.LastName, @"[^\u0000-\u007F]+", string.Empty);
                 var firstName = user.FirstName;
                 var lastName = user.LastName;
-                var uniqueSchoolSisId = settings.DefaultSisID;
+                var uniqueSchoolSisId = user.SchoolSISId;
                 var grade = "";
                 var email = user.Mail;
                 var user_type = 1;
@@ -344,7 +360,9 @@ namespace Directorii
             {
                 if (group.IsOU)
                 {
-                    DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+
+                    ADDomainController dc = myParent.DictionaryOfADDomainControllers[group.DomainControllerKey];
+                    DirectoryEntry parentOU = new DirectoryEntry(group.Adspath, dc.DirectoryServerUsername, dc.getDecryptedPassword());
                     //Console.WriteLine("PARENT is: " + parentOU.Parent.Guid);
 
                     //Check whether the parent group has a manual SIS ID in place, and use that if it exists
@@ -363,7 +381,8 @@ namespace Directorii
                     }
                 } else
                 {
-                    DirectoryEntry parentGroup = new DirectoryEntry(group.Adspath, settings.DirectoryServerUsername, settings.getDecryptedPassword());
+                    ADDomainController dc = myParent.DictionaryOfADDomainControllers[group.DomainControllerKey];
+                    DirectoryEntry parentGroup = new DirectoryEntry(group.Adspath, dc.DirectoryServerUsername, dc.getDecryptedPassword());
                     Console.WriteLine("PARENT GROUP IS: " + parentGroup.Parent.Guid);
 
                     if(fullListOfContainers.ContainsKey(parentGroup.Parent.Guid.ToString()) && fullListOfContainers[parentGroup.Parent.Guid.ToString()].UsingManualSisID)
@@ -409,6 +428,15 @@ namespace Directorii
         {
             Application.DoEvents();
             runSync();
+        }
+
+        private void SyncForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
         }
     }
 }

@@ -15,6 +15,7 @@ namespace Directorii
         private string mail;
         private string guid;
         private string userSISId;
+        private string schoolSISId;
 
         public User(string userName, string firstName, string lastName, string mail, string guid)
         {
@@ -32,5 +33,6 @@ namespace Directorii
         public string Mail { get => mail; set => mail = value; }
         public string Guid { get => guid; set => guid = value; }
         public string UserSISId { get => userSISId; set => userSISId = value; }
+        public string SchoolSISId { get => schoolSISId; set => schoolSISId = value; }
     }
 }

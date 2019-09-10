@@ -41,10 +41,10 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(201, 24);
-            this.pictureBox1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.pictureBox1.Location = new System.Drawing.Point(402, 46);
+            this.pictureBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(64, 64);
+            this.pictureBox1.Size = new System.Drawing.Size(128, 123);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -53,10 +53,10 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Arial", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.Control;
-            this.label1.Location = new System.Drawing.Point(126, 105);
-            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Location = new System.Drawing.Point(252, 202);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(0, 32);
+            this.label1.Size = new System.Drawing.Size(0, 61);
             this.label1.TabIndex = 1;
             // 
             // adContainersListBox
@@ -64,10 +64,11 @@
             this.adContainersListBox.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
             this.adContainersListBox.ForeColor = System.Drawing.SystemColors.Window;
             this.adContainersListBox.FormattingEnabled = true;
-            this.adContainersListBox.Location = new System.Drawing.Point(42, 105);
-            this.adContainersListBox.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.adContainersListBox.ItemHeight = 25;
+            this.adContainersListBox.Location = new System.Drawing.Point(84, 202);
+            this.adContainersListBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.adContainersListBox.Name = "adContainersListBox";
-            this.adContainersListBox.Size = new System.Drawing.Size(360, 303);
+            this.adContainersListBox.Size = new System.Drawing.Size(716, 579);
             this.adContainersListBox.TabIndex = 2;
             this.adContainersListBox.SelectedIndexChanged += new System.EventHandler(this.adContainersListBox_SelectedIndexChanged);
             // 
@@ -76,9 +77,10 @@
             this.closeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.closeButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.closeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.closeButton.Location = new System.Drawing.Point(42, 428);
+            this.closeButton.Location = new System.Drawing.Point(84, 823);
+            this.closeButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.closeButton.Name = "closeButton";
-            this.closeButton.Size = new System.Drawing.Size(98, 39);
+            this.closeButton.Size = new System.Drawing.Size(196, 75);
             this.closeButton.TabIndex = 14;
             this.closeButton.Text = "Close";
             this.closeButton.UseVisualStyleBackColor = true;
@@ -89,9 +91,10 @@
             this.removeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.removeButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.removeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.removeButton.Location = new System.Drawing.Point(167, 428);
+            this.removeButton.Location = new System.Drawing.Point(334, 823);
+            this.removeButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.removeButton.Name = "removeButton";
-            this.removeButton.Size = new System.Drawing.Size(98, 39);
+            this.removeButton.Size = new System.Drawing.Size(196, 75);
             this.removeButton.TabIndex = 15;
             this.removeButton.Text = "Remove";
             this.removeButton.UseVisualStyleBackColor = true;
@@ -102,9 +105,10 @@
             this.addButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addButton.Font = new System.Drawing.Font("Arial", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.addButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(78)))), ((int)(((byte)(184)))), ((int)(((byte)(206)))));
-            this.addButton.Location = new System.Drawing.Point(302, 428);
+            this.addButton.Location = new System.Drawing.Point(604, 823);
+            this.addButton.Margin = new System.Windows.Forms.Padding(6, 6, 6, 6);
             this.addButton.Name = "addButton";
-            this.addButton.Size = new System.Drawing.Size(98, 39);
+            this.addButton.Size = new System.Drawing.Size(196, 75);
             this.addButton.TabIndex = 16;
             this.addButton.Text = "Add New...";
             this.addButton.UseVisualStyleBackColor = true;
@@ -112,11 +116,11 @@
             // 
             // DirectoryObjectsListForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoScroll = true;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(444, 556);
+            this.ClientSize = new System.Drawing.Size(888, 1069);
             this.Controls.Add(this.addButton);
             this.Controls.Add(this.removeButton);
             this.Controls.Add(this.closeButton);
@@ -124,12 +128,13 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.MinimumSize = new System.Drawing.Size(444, 524);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.MinimumSize = new System.Drawing.Size(888, 1008);
             this.Name = "DirectoryObjectsListForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.DirectoryObjectsListForm_Load);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.DirectoryObjectsListForm_MouseDown);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -23,11 +23,21 @@ namespace Directorii
         private Settings loadedSettings;
         private bool ldapsSwitch;
         private ADDomainController dc;
+        // for window dragging ability
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
 
-        public ServerSettingsForm(ADDomainController dc)
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        // end of window dragging ability
+
+        public ServerSettingsForm(ADDomainController dc, SplashForm splashForm)
         {
             InitializeComponent();
-            this.loadedSettings = LoadedSettings;
+            this.myParent = splashForm;
+            this.loadedSettings = myParent.LoadedSettings;
             this.dc = dc;
         }
 
@@ -101,7 +111,18 @@ namespace Directorii
             #region Creating Settings object, and writing to JSON file
 
             dc.Ldaps = ldapsSwitch;
-            encryptPassword(dc);      
+            dc.DirectoryServerUsername = usernameTextBox.Text;
+            dc.DirectoryServerHostname = hostnameTextBox.Text.ToString();
+            encryptPassword(dc);
+
+            string port;
+            if(ldapsSwitch) { port = ":636"; } else { port = ":389"; }
+            dc.LdapConnectionAddress = "LDAP://" + hostnameTextBox.Text.ToString() + port;
+            if (!myParent.DictionaryOfADDomainControllers.ContainsKey(dc.DirectoryServerHostname))
+            {
+                myParent.DictionaryOfADDomainControllers.Add(dc.DirectoryServerHostname, dc);
+            }
+
 
             Close();
 
@@ -149,6 +170,15 @@ namespace Directorii
             {
                 ldapEnabledLabel.Text = "LDAPS Enabled";
                 ldapsSwitch = true;
+            }
+        }
+
+        private void ServerSettingsForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
             }
         }
     }

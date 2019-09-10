@@ -21,8 +21,18 @@ namespace Directorii
         #region private variables
         private Settings loadedSettings = null;
         private List<ADContainer> listOfAdContainers = new List<ADContainer>();
+        private Dictionary<string, ADDomainController> dictionaryOfADDomainControllers = new Dictionary<string, ADDomainController>();
         private string savePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "ADSyncTool");
         private DirectorySearcher search = null;
+        // for window dragging ability
+        public const int WM_NCLBUTTONDOWN = 0xA1;
+        public const int HT_CAPTION = 0x2;
+
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
+        [System.Runtime.InteropServices.DllImport("user32.dll")]
+        public static extern bool ReleaseCapture();
+        // end of window dragging ability
         #endregion
 
         #region getters and setters
@@ -30,6 +40,7 @@ namespace Directorii
         public string SavePath { get => savePath; set => savePath = value; }
         public Settings LoadedSettings { get => loadedSettings; set => loadedSettings = value; }
         public DirectorySearcher Search { get => search; set => search = value; }
+        public Dictionary<string, ADDomainController> DictionaryOfADDomainControllers { get => dictionaryOfADDomainControllers; set => dictionaryOfADDomainControllers = value; }
         #endregion
 
 
@@ -38,6 +49,7 @@ namespace Directorii
             InitializeComponent();
             System.IO.Directory.CreateDirectory(savePath);
             loadSettingsJSON();
+            loadADDomainControllersJSON();
         }
 
         #region settings JSON
@@ -55,6 +67,7 @@ namespace Directorii
             } catch (Exception)
             {
                 Console.WriteLine("Could not load settings JSON into Settings object. No settings JSON found?");
+                LoadedSettings = new Settings("hostname", "AD", "username", "doamin");
             }
 
             try
@@ -67,8 +80,35 @@ namespace Directorii
             } catch (Exception)
             {
                 Console.WriteLine("Could not load directory objects list. No directory objects JSON found?");
+                LoadedSettings.ListOfADDomainControllers = new List<ADDomainController>();
             }
+
+            
+
         }
+
+        private void loadADDomainControllersJSON()
+        {
+            try
+            {
+                using (StreamReader file = File.OpenText(SavePath + "\\ADDomainControllers.json"))
+                {
+                    JsonSerializer serializer = new JsonSerializer();
+                    List<ADDomainController> temporaryList = (List<ADDomainController>)serializer.Deserialize(file, typeof(List<ADDomainController>));
+                    LoadedSettings.ListOfADDomainControllers = new List<ADDomainController>();
+                    foreach (ADDomainController dc in temporaryList)
+                    {
+                        dictionaryOfADDomainControllers.Add(dc.DirectoryServerHostname, dc);
+                        Application.DoEvents();
+                        Console.WriteLine(dc.DirectoryServerHostname + " *** " + dc);
+                        LoadedSettings.ListOfADDomainControllers.Add(dc);
+                    }
+                }
+            }
+            catch(Exception ex)
+            { Console.WriteLine("Failed. " + ex); }
+        }
+
         private void serializeSettingsToJSON()
             {
                 if (LoadedSettings != null)
@@ -102,6 +142,26 @@ namespace Directorii
                     Console.WriteLine("SKIPPING WRITE");
                 }
             }
+
+
+        private void writeADDomainControllersJSON()
+        {
+            if (loadedSettings.ListOfADDomainControllers != null)
+            {
+                try
+                {
+                    string output = JsonConvert.SerializeObject(LoadedSettings.ListOfADDomainControllers, Formatting.Indented);
+                    StreamWriter sw = new StreamWriter(savePath + "\\ADDomainControllers.json");
+                    sw.Write(output);
+                    sw.Close();
+                }
+                catch (UnauthorizedAccessException){
+                    MessageBox.Show("Permisson denied when writing domain controllers file. Configuration has not been saved.");
+                }
+            }
+        }
+
+
         #endregion
 
         #region event handlers
@@ -133,7 +193,7 @@ namespace Directorii
 
         private void SplashForm_Load(object sender, EventArgs e)
         {
-            AutoUpdater.Start("https://s3.eu-west-2.amazonaws.com/directorii/DirectoriiUpdateCheck.xml");
+            //AutoUpdater.Start("https://s3.eu-west-2.amazonaws.com/directorii/DirectoriiUpdateCheck.xml");
         }
 
         private void openSyncDialogButton_Click(object sender, EventArgs e)
@@ -145,6 +205,7 @@ namespace Directorii
         private void quitApplicationButton_Click(object sender, EventArgs e)
         {
             serializeSettingsToJSON();
+            writeADDomainControllersJSON();
             Application.DoEvents();
             Application.Exit();
         }
@@ -162,6 +223,13 @@ namespace Directorii
             openServerSettingsDialogButton.ForeColor = System.Drawing.Color.FromArgb(128, 255, 128);
         }
 
-
+        private void SplashForm_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (e.Button == MouseButtons.Left)
+            {
+                ReleaseCapture();
+                SendMessage(Handle, WM_NCLBUTTONDOWN, HT_CAPTION, 0);
+            }
+        }
     }
 }

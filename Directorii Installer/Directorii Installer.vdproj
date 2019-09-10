@@ -39,12 +39,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_BAD8A098E823CB1F85FFFCE0EAAA15F1"
-        "OwnerKey" = "8:_8BCD4D4719574C2D93B29F94861DE47F"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
         "OwnerKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
         "MsmSig" = "8:_UNDEFINED"
@@ -64,6 +58,12 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_E46BB0A0CC798A9FC5FB4A75C253B3CC"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -77,18 +77,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_391DE7D4D481004CA68138AAAE1DB8E8"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3DC4F69022E19BEEDB15F834A1A23AB2"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_BAD8A098E823CB1F85FFFCE0EAAA15F1"
         "MsmSig" = "8:_UNDEFINED"
         }
     }
@@ -316,7 +304,7 @@
             {
             "AssemblyRegister" = "3:1"
             "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.3.0, Culture=neutral, processorArchitecture=MSIL"
+            "AssemblyAsmDisplayName" = "8:Directorii, Version=1.1.6.0, Culture=neutral, processorArchitecture=MSIL"
                 "ScatterAssemblies"
                 {
                     "_8BCD4D4719574C2D93B29F94861DE47F"
@@ -341,37 +329,6 @@
             "Register" = "3:1"
             "Exclude" = "11:FALSE"
             "IsDependency" = "11:FALSE"
-            "IsolateTo" = "8:"
-            }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_BAD8A098E823CB1F85FFFCE0EAAA15F1"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:AutoUpdater.NET, Version=1.5.1.0, Culture=neutral, PublicKeyToken=501435c91b35f4bc, processorArchitecture=MSIL"
-                "ScatterAssemblies"
-                {
-                    "_BAD8A098E823CB1F85FFFCE0EAAA15F1"
-                    {
-                    "Name" = "8:AutoUpdater.NET.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:AutoUpdater.NET.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_A4F9E3457C884CA2A31FD6FEBD5B781B"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
             "IsolateTo" = "8:"
             }
             "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_D47D04D9A8D1B1246EDFEB2A7483B1FD"
@@ -503,15 +460,15 @@
         {
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:Directorii"
-        "ProductCode" = "8:{DFF6C3AF-E787-4F33-BE93-36C1AB091DA6}"
-        "PackageCode" = "8:{75D34EBD-DB27-4C67-8A94-CD8D03260BEE}"
+        "ProductCode" = "8:{B967BC09-2E90-43B6-9B9D-BAB377D052E0}"
+        "PackageCode" = "8:{16AF226E-3071-4987-9F2D-7ADF0C752B0B}"
         "UpgradeCode" = "8:{5C0AE55D-81A3-4135-9402-3542932B307C}"
         "AspNetVersion" = "8:"
         "RestartWWWService" = "11:FALSE"
         "RemovePreviousVersions" = "11:TRUE"
         "DetectNewerInstalledVersion" = "11:TRUE"
         "InstallAllUsers" = "11:FALSE"
-        "ProductVersion" = "8:1.1.4"
+        "ProductVersion" = "8:1.1.7"
         "Manufacturer" = "8:mattprice.eu"
         "ARPHELPTELEPHONE" = "8:"
         "ARPHELPLINK" = "8:"
